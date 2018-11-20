@@ -1,0 +1,20 @@
+.mainbutton {
+  width: 400px;
+  height: 60px;
+  color: $lightgreen;
+  border-radius: 40px 2px 40px 2px;
+  text-decoration: none;
+  padding: 10px 30px;
+  margin: 20% auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 4px solid $darkgreen;
+  &:hover {
+    color: $lightgreen;
+    text-decoration: none;
+  }
+  h3 {
+text-decoration: none;
+  }
+}

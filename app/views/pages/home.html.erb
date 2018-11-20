@@ -1,2 +1,50 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+
+<div class="menupopup hidden">
+<%= render "shared/navbar" %>
+
+  <div class="menucenter">
+    <div class="menucontent">
+      <div class="menuoption">
+        <h1><%= link_to "Home", "#" %></h1>
+      </div>
+      <div class="menuoption">
+        <h1><%= link_to "Profile", "#" %></h1>
+      </div>
+      <div class="menuoption">
+        <h1><%= link_to "Dashboard", "#" %></h1>
+      </div>
+      <div class="menuoption">
+        <h1><%= link_to "Return", "#" %></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="mainbackground">
+  <%= render 'shared/navbar' %>
+    <%= link_to "#" do %>
+      <div class="mainbutton">
+        <h4>Get Your Bike Fixed!</h4>
+      </div>
+    <% end %>
+
+</div>
+
+<div class="wrapper">
+  <div class="container">
+
+  </div>
+</div>
+
+
+
+<script>
+  document.querySelectorAll(".toggle-menu").forEach((x) => {
+    x.addEventListener("click", (e) => {
+    document.querySelector(".menupopup").classList.toggle("hidden");
+    });
+  });
+</script>
