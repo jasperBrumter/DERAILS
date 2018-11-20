@@ -114,6 +114,13 @@
     font-size: 23px;
     font-weight: lighter;
     letter-spacing: 2px;
+  a {
+    text-decoration: none;
+    color: $lightgreen;
+    &:hover {
+      text-decoration: line-through;
+    }
+  }
 }
 
 .step {
