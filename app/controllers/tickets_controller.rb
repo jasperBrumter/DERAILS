@@ -42,7 +42,6 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     authorize @ticket
     @ticket.destroy
-
   end
 
   private
