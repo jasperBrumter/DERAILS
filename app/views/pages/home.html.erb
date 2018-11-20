@@ -5,17 +5,88 @@
 
   <div class="menucenter">
     <div class="menucontent">
-      <div class="menuoption">
-        <h1><%= link_to "Home", "#" %></h1>
+      <% unless current_user %>
+        <div class="menuoption">
+          <h1><%= link_to "Sign In", new_user_session_path %></h1>
+        </div>
+        <div class="menuoption">
+          <h1><%= link_to "Sign Up", new_user_registration_path %></h1>
+        </div>
+        <div class="menuoption">
+          <h1><%= link_to "About Us", "#" %></h1>
+        </div>
+      <% else %>
+        <div class="menuoption">
+          <h1><%= link_to "About Us", "#" %></h1>
+        </div>
+        <div class="menuoption">
+          <h1><%= link_to "Log Out", destroy_user_session_path, method: "delete" %></h1>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div id="restofpage">
+  <div class="mainbackground"></div>
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+          <%= link_to "#" do %>
+            <div class="mainbutton">
+              <h4>FIX MY BIKE</h4>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="menuoption">
-        <h1><%= link_to "Profile", "#" %></h1>
-      </div>
-      <div class="menuoption">
-        <h1><%= link_to "Dashboard", "#" %></h1>
-      </div>
-      <div class="menuoption">
-        <h1><%= link_to "Return", "#" %></h1>
+    </div>
+    <div class="howitworks">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-10 col-sm-8 ">
+            <h1>HOW IT WORKS</h1>
+          </div>
+          <div class="col-xs-10 col-sm-8 ">
+            <div class="divstep1">
+              <%= image_tag("derails-drawings-02.svg", id: "step1image") %>
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-4 ">
+            <div class="step1title">
+              <p class="stepnumber">01.</p>
+                <h3>Create a ticket</h3>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-sm-4 ">
+            <div class="step2title">
+              <p class="stepnumber">02.</p>
+                <h3>Connect with a Mechanic</h3>
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-8 ">
+            <div class="divstep2">
+              <%= image_tag("derails-drawings-03.svg", id: "step2image") %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-10 col-sm-8 ">
+            <div class="divstep3">
+              <%= image_tag("derails-drawings-04.svg", id: "step3image") %>
+            </div>
+          </div>
+          <div class="col-xs-10 col-sm-4 ">
+            <div class="step3title">
+              <p class="stepnumber">03.</p>
+                <h3>Accept & Make an Appointment</h3>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -23,28 +94,5 @@
 
 
 
-<div class="mainbackground">
-  <%= render 'shared/navbar' %>
-    <%= link_to "#" do %>
-      <div class="mainbutton">
-        <h4>Get Your Bike Fixed!</h4>
-      </div>
-    <% end %>
-
-</div>
-
-<div class="wrapper">
-  <div class="container">
-
-  </div>
-</div>
 
 
-
-<script>
-  document.querySelectorAll(".toggle-menu").forEach((x) => {
-    x.addEventListener("click", (e) => {
-    document.querySelector(".menupopup").classList.toggle("hidden");
-    });
-  });
-</script>

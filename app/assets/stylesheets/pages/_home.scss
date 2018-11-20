@@ -1,20 +1,14 @@
 .mainbackground {
   height: 100vh;
   width: 100%;
-  background-image: linear-gradient(rgba(20,20,20,0.4), rgba(20,20,20,0.5)), url("nader_background.jpg");
+  background-image: linear-gradient(rgba(242,233,217,0.2), rgba(242,233,217,0.2)), url("nader_background.jpg");
   background-position: 38% 0%;
   background-size: cover;
-  background-attachment: fixed;
+  position: fixed;
+  z-index: -2;
 }
 
-.navigationtop {
-  width: 100%;
-  height: 80px;
-  background: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 .menupopup {
   height: 100vh;
   width: 100%;
@@ -61,3 +55,44 @@
 .hidden {
   display: none;
 }
+
+.howitworks {
+  margin-top: 40vh;
+  width: 100%;
+  background-color: $darkgreen;
+
+  h1,h2,h3,h4,h5,h6 {
+    color: none;
+    text-shadow: 1px 1px 0 $lightgreen,
+    -1px 1px 0 $lightgreen,
+    1px -1px 0 $lightgreen,
+    -1px -1px 0 $lightgreen,
+    0px 1px 0 $lightgreen,
+    0px -1px 0 $lightgreen,
+    -1px 0px 0 $lightgreen,
+    1px 0px 0 $lightgreen,
+    2px 2px 0 $lightgreen,
+    -2px 2px 0 $lightgreen,
+    2px -2px 0 $lightgreen,
+    -2px -2px 0 $lightgreen,
+    0px 2px 0 $lightgreen,
+    0px -2px 0 $lightgreen,
+    -2px 0px 0 $lightgreen,
+    2px 0px 0 $lightgreen,
+    1px 2px 0 $lightgreen,
+    -1px 2px 0 $lightgreen,
+    1px -2px 0 $lightgreen,
+    -1px -2px 0 $lightgreen,
+    2px 1px 0 $lightgreen,
+    -2px 1px 0 $lightgreen,
+    2px -1px 0 $lightgreen,
+    -2px -1px 0 $lightgreen;
+  }
+}
+.stepnumber {
+  font-size: 80px;
+  color: none;
+  text-shadow: -2px 0 $lightgreen, 0 2px $lightgreen, 2px 0 $lightgreen, 0 -2px $lightgreen;
+
+}
+
