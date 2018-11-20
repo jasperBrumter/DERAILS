@@ -32,4 +32,10 @@ class ResponsesController < ApplicationController
     authorize @response
     @response.destroy
   end
+  
+  private
+  
+  def strongparams
+    params.require("response").permit(:content, :price, :contact)
+  end
 end
