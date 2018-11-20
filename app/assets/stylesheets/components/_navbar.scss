@@ -1,12 +1,22 @@
 .navbar-derails {
   width: 100%;
-  height: 70px;
-  position: sticky;
+  height: 100px;
+  position: fixed;
   font-size: 40px;
-  color: $beige;
+  color: $lightgreen;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 25px;
+  padding: 0 35px;
+  z-index: 5;
+  transition: .4s ease;
 }
 
+
+.logo {
+  width: 200px;
+}
+
+.burger {
+  height: 80px;
+}

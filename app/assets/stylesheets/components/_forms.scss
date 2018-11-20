@@ -1,0 +1,42 @@
+.signupform {
+  background-color: rgba(61,111,75,0.7);
+  margin-top: 20vh;
+  padding: 25px;
+  border-radius: 25px;
+  border: 1px solid $royalgreen;
+  h1,h2,h3,h4,h5,h6,p {
+    color: $lightgreen;
+  }
+  a {
+    text-decoration: none;
+    color:$lightgreen;
+  }
+  label {
+    color: white;
+  }
+  .form-text {
+    color: white;
+  }
+}
+
+.signinform {
+  background-color: rgba(61,111,75,0.7);
+  margin-top: 20vh;
+  padding: 25px;
+  border-radius: 25px;
+  border: 1px solid $royalgreen;
+  h1,h2,h3,h4,h5,h6,p {
+    color: $lightgreen;
+  }
+  a {
+    text-decoration: none;
+    color:$lightgreen;
+  }
+  label {
+    color: white;
+  }
+  .form-text {
+    color: white;
+  }
+}
+

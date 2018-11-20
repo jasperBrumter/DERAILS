@@ -1,24 +1,18 @@
 .mainbackground {
   height: 100vh;
   width: 100%;
-  background-image: linear-gradient(rgba(20,20,20,0.4), rgba(20,20,20,0.5)), url("nader_background.jpg");
+  background-image: linear-gradient(rgba(242,233,217,0.2), rgba(242,233,217,0.2)), image-url("nader_background.jpg");
   background-position: 38% 0%;
   background-size: cover;
-  background-attachment: fixed;
+  position: fixed;
+  z-index: -2;
 }
 
-.navigationtop {
-  width: 100%;
-  height: 80px;
-  background: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+
 .menupopup {
   height: 100vh;
   width: 100%;
-  background-image: linear-gradient(rgba(61,111,75,0.92), rgba(61,111,75,0.92)), url("nader_background.jpg");
+  background-image: linear-gradient(rgba(61,111,75,0.92), rgba(61,111,75,0.92)), image-url("images/nader_background.jpg");
   background-position: 38% 0%;
   background-size: cover;
   background-attachment: fixed;
@@ -60,4 +54,87 @@
 
 .hidden {
   display: none;
+}
+
+.howitworks {
+  margin-top: 40vh;
+  width: 100%;
+  background-color: $darkgreen;
+
+  .subheaders {
+    font-family:'Roboto', sans-serif;
+    color: $darkgreen;
+    background-color: $lightgreen;
+    padding: 5px 20px;
+    text-align: center;
+    letter-spacing: 5px;
+    margin: 30px 0;
+  }
+  li {
+    color: $lightgreen;
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    color: $lightgreen;
+    letter-spacing: 2px;
+  }
+  h3 {
+    margin-top: 0;
+  }
+}
+.stepnumber {
+  display: inline-block;
+  font-size: 120px;
+  color: $darkgreen;
+  letter-spacing: 10px;
+  margin-bottom: 0px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: $lightgreen;
+}
+
+.step2title {
+  float: center;
+  margin: 50px;
+}
+.step3title {
+  float: left;
+}
+.step5title {
+  float: center;
+  margin: 50px;
+}
+
+.subtext {
+  color: $lightgreen;
+    font-family: 'Roboto', sans-serif;
+    font-size: 23px;
+    font-weight: lighter;
+    letter-spacing: 2px;
+  a {
+    text-decoration: none;
+    color: $lightgreen;
+    &:hover {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.step {
+  margin-top: 50px;
+}
+
+.calltoactionhome {
+  color: $darkgreen;
+  font-size: 40px;
+  transition: .4s;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: $lightgreen;
+  &:hover {
+    text-decoration: line-through;
+    text-decoration-style: solid;
+  }
 }
