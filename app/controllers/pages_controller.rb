@@ -3,4 +3,10 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def dashboard
+    @user = current_user
+    @ticket = Ticket.Where(user: @user)
+  end
+
 end
