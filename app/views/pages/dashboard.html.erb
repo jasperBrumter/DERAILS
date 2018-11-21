@@ -1,3 +1,20 @@
+<div class="container">
 
-This is the Dashboard
+  <div class="your-ticket">
+    <h2>Your Ticket</h2>
+    <p>choose your mechanic</p>
+    <% @user.tickets.each do |ticket| %>
+      <%= ticket.id %>
+      <%= link_to "Ticket", ticket_path(ticket) %>
+        <h2>Your Messages</h2>
+        <% ticket.responses.each do |response| %>
+          <%= response.content %>
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
 

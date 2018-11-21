@@ -7,7 +7,6 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
     authorize @ticket
-    redirect_to dashboard_path
   end
 
   def new
