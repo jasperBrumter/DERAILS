@@ -1,0 +1,27 @@
+.indexmapcontainer {
+  width: 98%;
+  margin: 100px auto 0px auto;
+  background: blue;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.ticketscontainer {
+  width: 98%;
+  margin: 10px auto 0px auto;
+  height: 50vh;
+  overflow: scroll;
+}
+
+.secondarybackground {
+  background-color: $beige;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
