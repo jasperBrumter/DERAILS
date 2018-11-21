@@ -16,7 +16,7 @@
   overflow: scroll;
 }
 
-.secondarybackground {
+.secondaryinvertedbackground {
   background-color: $beige;
   width: 100%;
   height: 100vh;
@@ -24,4 +24,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+}
+
+.secondarybackground {
+  background-color: $beige;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: scroll;
 }
