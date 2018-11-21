@@ -1,13 +1,3 @@
-<%= @user.first_name %>
 
-<h2>Your Ticket</h2>
-    <h3>@ticket.id</h3>
-    <p>@ticket.status</p>
-    <%= cl_image_tag @ticket.photo_1, height: 300, width: 400, crop: :fill %>
-    <%= cl_image_tag @ticket.photo_2, height: 300, width: 400, crop: :fill %>
-    <%= cl_image_tag @ticket.photo_3, height: 300, width: 400, crop: :fill %>
+This is the Dashboard
 
-  <h2>Your Responses</h2>
-  <% @ticket.responses.each do |response| %>
-      <li>response.content</li>
-  <% end %>

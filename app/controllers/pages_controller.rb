@@ -6,7 +6,5 @@ class PagesController < ApplicationController
 
   def dashboard
     @user = current_user
-    @ticket = Ticket.Where(user: @user)
   end
-
 end
