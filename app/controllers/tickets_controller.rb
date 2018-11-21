@@ -1,7 +1,6 @@
 class TicketsController < ApplicationController
   def index
     @tickets = policy_scope(Ticket)
-    authorize @ticket
   end
 
   def show
