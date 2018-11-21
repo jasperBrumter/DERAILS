@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_194327) do
     t.string "first_name"
     t.string "photo"
     t.boolean "is_mechanic"
-    t.float "rating"
+    t.integer "rating"
     t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

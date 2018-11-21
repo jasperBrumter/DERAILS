@@ -1,5 +1,4 @@
 class TicketsController < ApplicationController
-
   def index
     @tickets = policy_scope(Ticket)
     authorize @ticket
@@ -8,6 +7,7 @@ class TicketsController < ApplicationController
   def show
     @ticket = Ticket.find(params[:id])
     authorize @ticket
+    redirect_to dashboard_path
   end
 
   def new
@@ -16,6 +16,7 @@ class TicketsController < ApplicationController
   end
 
   def create
+    raise
     @ticket = Ticket.new(strongparams)
     authorize @ticket
     @ticket.user = current_user
