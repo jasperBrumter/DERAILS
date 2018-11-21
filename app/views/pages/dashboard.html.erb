@@ -1,12 +1,13 @@
 <%= @user.first_name %>
 
-<h2>Your Tickets</h2>
-<% @tickets.each do |ticket| %>
-  <%= link_to ticket_path(@ticket) %>
+<h2>Your Ticket</h2>
     <h3>@ticket.id</h3>
     <p>@ticket.status</p>
+    <%= cl_image_tag @ticket.photo_1, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @ticket.photo_2, height: 300, width: 400, crop: :fill %>
+    <%= cl_image_tag @ticket.photo_3, height: 300, width: 400, crop: :fill %>
+
   <h2>Your Responses</h2>
   <% @ticket.responses.each do |response| %>
       <li>response.content</li>
-
-
+  <% end %>
