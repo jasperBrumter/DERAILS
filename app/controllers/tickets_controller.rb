@@ -16,7 +16,6 @@ class TicketsController < ApplicationController
   end
 
   def create
-    raise
     @ticket = Ticket.new(strongparams)
     authorize @ticket
     @ticket.user = current_user
