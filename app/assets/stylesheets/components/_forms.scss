@@ -50,7 +50,7 @@
   margin-top: 30px;
 }
 
-.next1, .next2 {
+.next1, .next2, .next3 {
   margin-top: 30px;
   margin-bottom: 20px;
   width: 100%;
@@ -95,3 +95,19 @@
   background-color: $darkgreen;
   color: $beige;
 }
+
+.back1, .back2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s ease;
+  color: $darkgreen;
+  margin-bottom: 20px;
+  i {
+    margin-right: 10px;
+  }
+  &:hover {
+    color: $lightgreen;
+  }
+}
+

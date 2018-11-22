@@ -100,6 +100,7 @@
 
       <div class="step2 hidden">
         <div class="container">
+
           <div class="row">
             <div class="col-xs-12">
               <center>
@@ -153,6 +154,13 @@
               </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="back1">
+                <i class="fas fa-long-arrow-alt-left"></i>back
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -168,7 +176,7 @@
             </div>
             <div class="col-xs-12">
               <center>
-                <%= f.input :description %>
+                <%= f.input :description, placeholder: 'What days are you available?' %>
               </center>
             </div>
             <div class="col-xs-12">
@@ -182,12 +190,27 @@
                 <%= f.input :postal_code %>
               </center>
             </div>
-            <div class="col-xs-12">
+            <div class="hidden">
               <center>
-                <%= f.submit %>
+                <%= f.button :submit, "Custom Button Text", class: "formSubmitButton" %>
               </center>
             </div>
           </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="next3">
+                SUBMIT
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="back2">
+                <i class="fas fa-long-arrow-alt-left"></i>back
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <% end %>
@@ -211,12 +234,64 @@
       document.querySelector("."+ box.id).click()
     })
   })
+
+  const firstPartForm = document.querySelector(".step1");
+  const secondPartForm = document.querySelector(".step2");
+  const thirdPartForm = document.querySelector(".step3");
+
   document.querySelector(".next1").addEventListener("click", (e) => {
-    document.querySelector(".step1").classList.toggle("hidden");
-    document.querySelector(".step2").classList.toggle("hidden");
+    firstPartForm.classList.toggle("hidden");
+    secondPartForm.classList.toggle("hidden");
   })
   document.querySelector(".next2").addEventListener("click", (e) => {
-    document.querySelector(".step2").classList.toggle("hidden");
-    document.querySelector(".step3").classList.toggle("hidden");
+    secondPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
   })
+  document.querySelector(".back1").addEventListener("click", (e) => {
+    firstPartForm.classList.toggle("hidden");
+    secondPartForm.classList.toggle("hidden");
+  })
+  document.querySelector(".back2").addEventListener("click", (e) => {
+    secondPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
+  })
+
+  const submitButton = document.querySelector(".next3");
+  const descriptionField = document.querySelector("#ticket_description");
+  const cityField = document.querySelector("#ticket_city");
+
+  descriptionField.addEventListener("focus", (e) => {
+    descriptionField.style.border="";
+    submitButton.style.background = "rgb(61,111,75)";
+    submitButton.style.color = "rgb(141,205,160)";
+    submitButton.style.border = "2px solid rrgb(141,205,160)";
+  })
+  cityField.addEventListener("focus", (e) => {
+    cityField.style.border="";
+    submitButton.style.background = "rgb(61,111,75)";
+    submitButton.style.color = "rgb(141,205,160)";
+    submitButton.style.border = "2px solid rrgb(141,205,160)";
+  })
+
+
+  submitButton.addEventListener("click", (e) => {
+
+    if (descriptionField.value.trim() == "") {
+      descriptionField.style.border="2px solid red";
+      submitButton.style.background = "rgb(200,102,86)";
+      submitButton.style.color = "rgb(61,111,75)";
+      submitButton.style.border = "2px solid rgb(61,111,75)";
+    }
+    if (cityField.value.trim() == "") {
+      cityField.style.border="2px solid red";
+      submitButton.style.background = "rgb(200,102,86)";
+      submitButton.style.color = "rgb(61,111,75)";
+      submitButton.style.border = "2px solid rgb(61,111,75)";
+    }
+    if (cityField.value.trim() != "" && descriptionField.value.trim() != "") {
+      document.querySelector(".formSubmitButton").click();
+    }
+
+  })
+
 </script>
