@@ -27,4 +27,8 @@ class TicketPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def details?
+    true
+  end
 end

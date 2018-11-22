@@ -33,37 +33,46 @@
   </div>
 </div>
 
+
 <div id="restofpage">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
 
-  <%= render 'shared/flashes' %>
-  <%= render 'shared/navbar' %>
+    <h1>Your Ticket</h1>
 
-  <div class="dash-background">
-    <div class="container">
+    <p><%= @ticket.id %></p>
 
-        <h2>Your Tickets</h2>
-        <p>choose your mechanic</p>
-        <% @user.tickets.each do |ticket| %>
-          <%= ticket.id %>
-          <%= link_to "Ticket", details_path(ticket) %>
-            <p>Your Messages</p>
-          <% ticket.responses.each do |response| %>
-            <p><%= response.content %></p>
+    <% if @ticket.tune_up == true %>
+      <p>Tune Up</p>
+    <% end %>
+    <% if @ticket.brakes == true %>
+      <p>Brakes</p>
+    <% end %>
+    <% if @ticket.flat_tire == true %>
+      <p>Flat tire</p>
+    <% end %>
+    <% if @ticket.chain == true %>
+      <p>Chain</p>
+    <% end %>
+    <% if @ticket.gears == true %>
+      <p>Gears</p>
+    <% end %>
+    <% if @ticket.wheels == true %>
+      <p>Wheels</p>
+    <% end %>
+    <% if @ticket.frame == true %>
+      <p>Frame</p>
+    <% end %>
 
-          <% end %>
-        <% end %>
-    </div>
-  </div>
+
+
+    <% if @ticket.photo_1.file %>
+    <%= cl_image_tag @ticket.photo_1 %>
+    <% end %>
+
+    <h3>Description</h3>
+    <%= @ticket.description %>
 
 
 </div>
-
-    <%= link_to edit_ticket_path(@ticket) do %>
-        <h4>EDIT</h4>
-    <% end %>
-
-    <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
-      <h4>DELETE</h4>
-    <% end %>
-
 
