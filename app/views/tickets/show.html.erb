@@ -1,4 +1,4 @@
-<% provide(:title, "Dashboard") %>
+<% provide(:title, "Your Ticket") %>
 
 <div class="menupopup hidden">
 <%= render "shared/navbar" %>
@@ -34,6 +34,7 @@
 </div>
 
 <div id="restofpage">
+
   <%= render 'shared/flashes' %>
   <%= render 'shared/navbar' %>
 
@@ -54,8 +55,15 @@
     </div>
   </div>
 
+
 </div>
 
+    <%= link_to edit_ticket_path(@ticket) do %>
+        <h4>EDIT</h4>
+    <% end %>
 
+    <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
+      <h4>DELETE</h4>
+    <% end %>
 
 

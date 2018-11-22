@@ -41,6 +41,7 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     authorize @ticket
     @ticket.destroy
+    redirect_to dashboard_path
   end
 
   def details
