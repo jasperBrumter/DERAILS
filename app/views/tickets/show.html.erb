@@ -38,41 +38,60 @@
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
 
-    <h1>Your Ticket</h1>
+    <h1>YOUR TICKET DETAILS</h1>
+    <h3>Please review your ticket information</h3>
 
-    <p><%= @ticket.id %></p>
+    <h1>SELECTED ISSUES</h1>
+
 
     <% if @ticket.tune_up == true %>
-      <p>Tune Up</p>
+      <p>tune-up</p>
     <% end %>
     <% if @ticket.brakes == true %>
-      <p>Brakes</p>
+      <p>brakes</p>
     <% end %>
     <% if @ticket.flat_tire == true %>
-      <p>Flat tire</p>
+      <p>flat-tire</p>
     <% end %>
     <% if @ticket.chain == true %>
-      <p>Chain</p>
+      <p>chain</p>
     <% end %>
     <% if @ticket.gears == true %>
-      <p>Gears</p>
+      <p>gears</p>
     <% end %>
     <% if @ticket.wheels == true %>
-      <p>Wheels</p>
+      <p>wheels</p>
     <% end %>
     <% if @ticket.frame == true %>
-      <p>Frame</p>
+      <p>frame</p>
     <% end %>
 
-
+    <h1>PICTURES</h1>
 
     <% if @ticket.photo_1.file %>
     <%= cl_image_tag @ticket.photo_1 %>
     <% end %>
 
-    <h3>Description</h3>
+    <% if @ticket.photo_2.file %>
+    <%= cl_image_tag @ticket.photo_2 %>
+    <% end %>
+
+    <% if @ticket.photo_3.file %>
+    <%= cl_image_tag @ticket.photo_3 %>
+    <% end %>
+
+    <h1>DESCRIPTION</h1>
+    <%= @ticket.city %>
+    <%= @ticket.postal_code %>
     <%= @ticket.description %>
 
+    <%= link_to edit_ticket_path(@ticket) do %>
+        <h4>EDIT</h4>
+    <% end %>
+
+    <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
+      <h4>DELETE</h4>
+    <% end %>
 
 </div>
 
