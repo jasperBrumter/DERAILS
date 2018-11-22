@@ -182,10 +182,15 @@
             <div class="col-xs-12">
               <center>
                 <p>Where is the bike?</p>
+                <%= f.input :address, placeholder: 'We will only show the postal code' %>
+              </center>
+            </div>
+            <div class="col-xs-12 hidden">
+              <center>
                 <%= f.input :city %>
               </center>
             </div>
-            <div class="col-xs-12">
+            <div class="col-xs-12 hidden">
               <center>
                 <%= f.input :postal_code %>
               </center>
@@ -226,6 +231,8 @@
 </div>
 
 <script>
+
+
   document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
 
   document.querySelectorAll(".selectbox").forEach((box) => {
@@ -259,6 +266,7 @@
   const submitButton = document.querySelector(".next3");
   const descriptionField = document.querySelector("#ticket_description");
   const cityField = document.querySelector("#ticket_city");
+  const addressField = document.querySelector("#ticket_address");
 
   descriptionField.addEventListener("focus", (e) => {
     descriptionField.style.border="";
@@ -266,8 +274,8 @@
     submitButton.style.color = "rgb(141,205,160)";
     submitButton.style.border = "2px solid rrgb(141,205,160)";
   })
-  cityField.addEventListener("focus", (e) => {
-    cityField.style.border="";
+  addressField.addEventListener("focus", (e) => {
+    addressField.style.border="";
     submitButton.style.background = "rgb(61,111,75)";
     submitButton.style.color = "rgb(141,205,160)";
     submitButton.style.border = "2px solid rrgb(141,205,160)";
@@ -282,16 +290,28 @@
       submitButton.style.color = "rgb(61,111,75)";
       submitButton.style.border = "2px solid rgb(61,111,75)";
     }
-    if (cityField.value.trim() == "") {
-      cityField.style.border="2px solid red";
+    if (addressField.value.trim() == "") {
+      addressField.style.border="2px solid red";
       submitButton.style.background = "rgb(200,102,86)";
       submitButton.style.color = "rgb(61,111,75)";
       submitButton.style.border = "2px solid rgb(61,111,75)";
     }
-    if (cityField.value.trim() != "" && descriptionField.value.trim() != "") {
+    if (addressField.value.trim() != "" && descriptionField.value.trim() != "") {
       document.querySelector(".formSubmitButton").click();
     }
 
   })
 
+
+
+  <% if @ticket.errors[:longitude] %>
+
+
+    firstPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
+    addressField.style.border="2px solid red";
+    addressField.value = ""
+    addressField.placeholder = "Oops. We couldn't find that on our map..."
+
+  <% end %>
 </script>
