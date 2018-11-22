@@ -37,22 +37,7 @@
   <%= render 'shared/flashes' %>
   <%= render 'shared/navbar' %>
 
-  <div class="dash-background">
-    <div class="container">
 
-        <h2>Your Tickets</h2>
-        <p>choose your mechanic</p>
-        <% @user.tickets.each do |ticket| %>
-          <%= ticket.id %>
-          <%= link_to "Ticket", ticket_path(ticket) %>
-            <p>Your Messages</p>
-          <% ticket.responses.each do |response| %>
-            <p><%= response.content %></p>
-
-          <% end %>
-        <% end %>
-    </div>
-  </div>
 
 </div>
 

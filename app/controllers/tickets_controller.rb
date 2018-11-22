@@ -4,6 +4,7 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @ticket = Ticket.find(params[:id])
     authorize @ticket
   end
@@ -40,6 +41,11 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     authorize @ticket
     @ticket.destroy
+  end
+
+  def details
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
   end
 
   private
