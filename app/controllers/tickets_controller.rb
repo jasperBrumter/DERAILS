@@ -1,6 +1,14 @@
 class TicketsController < ApplicationController
   def index
     @tickets = policy_scope(Ticket)
+    @tickets_with_markers = @tickets.where.not(latitude: nil, longitude: nil)
+
+    @markers = @tickets_with_markers.map do |ticket|
+      {
+        lng: ticket.longitude,
+        lat: ticket.latitude
+      }
+    end
   end
 
   def show
