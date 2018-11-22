@@ -176,13 +176,13 @@
             </div>
             <div class="col-xs-12">
               <center>
-                <%= f.input :description, placeholder: 'What days are you available?' %>
+                <%= f.input :description, placeholder: 'Any useful information for the mechanic?' %>
               </center>
             </div>
             <div class="col-xs-12">
               <center>
                 <p>Where is the bike?</p>
-                <%= f.input :address, placeholder: 'We will only show the postal code' %>
+                <%= f.input :address, placeholder: "We'll find a mechanic nearby"%>
               </center>
             </div>
             <div class="col-xs-12 hidden">
@@ -304,7 +304,8 @@
 
 
 
-  <% if @ticket.errors[:longitude] %>
+  <% if @ticket.errors[:longitude] != [] %>
+
 
 
     firstPartForm.classList.toggle("hidden");
