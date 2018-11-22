@@ -1,9 +1,18 @@
 class TicketsController < ApplicationController
   def index
     @tickets = policy_scope(Ticket)
+    @tickets_with_markers = @tickets.where.not(latitude: nil, longitude: nil)
+
+    @markers = @tickets_with_markers.map do |ticket|
+      {
+        lng: ticket.longitude,
+        lat: ticket.latitude
+      }
+    end
   end
 
   def show
+    @user = current_user
     @ticket = Ticket.find(params[:id])
     authorize @ticket
   end
@@ -43,9 +52,14 @@ class TicketsController < ApplicationController
     redirect_to dashboard_path
   end
 
+  def details
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+  end
+
   private
 
   def strongparams
-    params.require("ticket").permit(:status, :photo_1, :photo_2, :photo_3, :user, :city, :postal_code, :tune_up, :brakes, :flat_tire, :chain, :gears, :wheels, :frame, :other, :description)
+    params.require("ticket").permit(:status, :photo_1, :photo_2, :photo_3, :user, :city, :postal_code, :tune_up, :brakes, :flat_tire, :chain, :gears, :wheels, :frame, :other, :description, :address, :specific_details)
   end
 end
