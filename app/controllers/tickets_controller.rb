@@ -54,6 +54,7 @@ class TicketsController < ApplicationController
 
   def details
     @ticket = Ticket.find(params[:id])
+    @response = Response.new
     authorize @ticket
   end
 

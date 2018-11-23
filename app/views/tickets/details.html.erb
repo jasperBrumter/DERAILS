@@ -44,7 +44,7 @@
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
 
-    <h1>Your Ticket</h1>
+    <h1>Ticket Details</h1>
 
     <p><%= @ticket.id %></p>
 
@@ -79,13 +79,22 @@
     <h3>Description</h3>
     <%= @ticket.description %>
 
+    <% if policy(@ticket).edit? %>
+        <%= link_to edit_ticket_path(@ticket) do%>
+          <h4>EDIT</h4>
+        <% end %>
+        <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
+          <h4>DELETE</h4>
+        <% end %>
+    <% elsif current_user.is_mechanic==true %>
 
-    <%= link_to edit_ticket_path(@ticket) do %>
-        <h4>EDIT</h4>
-    <% end %>
+        <%= simple_form_for ([@ticket, @response]) do |f| %>
+          <%= f.input :content %>
+          <%= f.input :price %>
+          <%= f.input :contact %>
+          <%= f.submit %>
+        <% end %>
 
-    <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
-      <h4>DELETE</h4>
     <% end %>
 
     <%= link_to "back", ticket_path(@ticket)%>

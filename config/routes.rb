@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard', as: 'dashboard'
   get '/tickets/:id/details', to: 'tickets#details', as: 'details'
   resources :tickets do
-    resources :responses, except: :index
+    resources :responses, except: [:index, :new]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

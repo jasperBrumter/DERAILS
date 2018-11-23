@@ -45,6 +45,7 @@
 
     <div class="secondaryinvertedbackground">
 
+    <h1>ALL TICKETS</h1>
 
       <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
 
@@ -55,76 +56,46 @@
             <% @tickets.each do |ticket| %>
               <div class="col-xs-12 col-md-6">
                 <div class="ticketcard">
-                  THIS IS A CARD
+                  <%= "TICKET # #{ticket.id}" %>
+
+                  <% if ticket.tune_up == true %>
+                    <p>Tune Up</p>
+                  <% end %>
+                  <% if ticket.brakes == true %>
+                    <p>Brakes</p>
+                  <% end %>
+                  <% if ticket.flat_tire == true %>
+                    <p>Flat tire</p>
+                  <% end %>
+                  <% if ticket.chain == true %>
+                    <p>Chain</p>
+                  <% end %>
+                  <% if ticket.gears == true %>
+                    <p>Gears</p>
+                  <% end %>
+                  <% if ticket.wheels == true %>
+                    <p>Wheels</p>
+                  <% end %>
+                  <% if ticket.frame == true %>
+                    <p>Frame</p>
+                  <% end %>
+
+                  <%= ticket.status %>
+
+                  <%= ticket.address %>
+
+                  <%= link_to "VIEW INFO", details_path(ticket) %>
+
                 </div>
               </div>
             <% end %>
 
-
-            <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-      THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-                          <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-      THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-                          <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-      THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-THIS IS A CARD
-                </div>
-              </div>
-
           </div>
         </div>
       </div>
+
+      <%= link_to "back", dashboard_path %>
+
     </div>
 
 
