@@ -54,28 +54,29 @@
               <p>Add filters to help us find a better-suited mechanic</p>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="tuneupcheckbox">Tune Up</div>
+
+              <div class="selectbox <%= @ticket.tune_up ?  'clickedbox' : ''%>" id="tuneupcheckbox">Tune Up</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="brakescheckbox">Brakes</div>
+              <div class="selectbox <%= @ticket.brakes ?  'clickedbox' : ''%>" id="brakescheckbox">Brakes</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="flattirecheckbox">Flat Tire</div>
+              <div class="selectbox <%= @ticket.flat_tire ?  'clickedbox' : ''%>" id="flattirecheckbox">Flat Tire</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="chaincheckbox">Chain</div>
+              <div class="selectbox <%= @ticket.chain ?  'clickedbox' : ''%>" id="chaincheckbox">Chain</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="gearscheckbox">Gears</div>
+              <div class="selectbox <%= @ticket.gears ?  'clickedbox' : ''%>" id="gearscheckbox">Gears</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="wheelscheckbox">Wheels</div>
+              <div class="selectbox <%= @ticket.wheels ?  'clickedbox' : ''%>" id="wheelscheckbox">Wheels</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="framecheckbox">Frame</div>
+              <div class="selectbox <%= @ticket.frame ?  'clickedbox' : ''%>" id="framecheckbox">Frame</div>
             </div>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="selectbox" id="othercheckbox">Other</div>
+              <div class="selectbox <%= @ticket.other ?  'clickedbox' : ''%>" id="othercheckbox">Other</div>
             </div>
           </div>
           <div class="row">
@@ -86,13 +87,7 @@
             </div>
           </div>
         </div>
-
-
-
-
-
-      </div>
-    <div class="hidden">
+         <div class="hidden">
       <%= f.input :tune_up, input_html: { class: 'tuneupcheckbox' }%>
       <%= f.input :brakes, input_html: { class: 'brakescheckbox' } %>
       <%= f.input :flat_tire, input_html: { class: 'flattirecheckbox'} %>
@@ -102,6 +97,13 @@
       <%= f.input :frame, input_html: { class: 'framecheckbox' } %>
       <%= f.input :other, input_html: { class: 'othercheckbox' }%>
     </div>
+
+
+
+
+
+      </div>
+
 
 
       <div class="step2 hidden">
@@ -309,10 +311,7 @@
   })
 
 
-
   <% if @ticket.errors[:longitude] != [] %>
-
-
 
     firstPartForm.classList.toggle("hidden");
     thirdPartForm.classList.toggle("hidden");
