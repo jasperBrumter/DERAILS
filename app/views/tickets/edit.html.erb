@@ -1,4 +1,4 @@
-<% provide(:title, "Your Ticket Details") %>
+<% provide(:title, "Edit") %>
 
 <div class="menupopup hidden">
 <%= render "shared/navbar" %>
@@ -39,10 +39,285 @@
   </div>
 </div>
 
-
 <div id="restofpage">
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
 
-    <h1>SIMPLE FORM TO DO</h1>
+    <div class="secondarybackground">
+      <%= simple_form_for [@ticket] do |f| %>
+
+      <div class="step1">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <h1>What's wrong with your bike?</h1>
+              <p>Add filters to help us find a better-suited mechanic</p>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+
+              <div class="selectbox <%= @ticket.tune_up ?  'clickedbox' : ''%>" id="tuneupcheckbox">Tune Up</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.brakes ?  'clickedbox' : ''%>" id="brakescheckbox">Brakes</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.flat_tire ?  'clickedbox' : ''%>" id="flattirecheckbox">Flat Tire</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.chain ?  'clickedbox' : ''%>" id="chaincheckbox">Chain</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.gears ?  'clickedbox' : ''%>" id="gearscheckbox">Gears</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.wheels ?  'clickedbox' : ''%>" id="wheelscheckbox">Wheels</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.frame ?  'clickedbox' : ''%>" id="framecheckbox">Frame</div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="selectbox <%= @ticket.other ?  'clickedbox' : ''%>" id="othercheckbox">Other</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="next1">
+                NEXT
+              </div>
+            </div>
+          </div>
+        </div>
+         <div class="hidden">
+      <%= f.input :tune_up, input_html: { class: 'tuneupcheckbox' }%>
+      <%= f.input :brakes, input_html: { class: 'brakescheckbox' } %>
+      <%= f.input :flat_tire, input_html: { class: 'flattirecheckbox'} %>
+      <%= f.input :chain, input_html: { class: 'chaincheckbox' } %>
+      <%= f.input :gears, input_html: { class: 'gearscheckbox' }%>
+      <%= f.input :wheels, input_html: { class: 'wheelscheckbox' } %>
+      <%= f.input :frame, input_html: { class: 'framecheckbox' } %>
+      <%= f.input :other, input_html: { class: 'othercheckbox' }%>
+    </div>
+
+
+
+
+
+      </div>
+
+
+
+      <div class="step2 hidden">
+        <div class="container">
+
+          <div class="row">
+            <div class="col-xs-12">
+              <center>
+                <h1>Picture time !</h1>
+                <p>We recommend uploading an overview</p>
+              </center>
+            </div>
+            <div class="col-xs-12">
+              <div class="pictureexample"></div>
+            </div>
+            <div class="col-xs-12">
+              <center><p>As well as a close-up of the specific problem </p></center>
+            </div>
+            <div class="col-xs-12">
+              <div class="pictureexample"></div>
+            </div>
+            <div class="col-xs-12">
+              <center><p>And a last one </p></center>
+            </div>
+            <div class="col-xs-12">
+              <div class="pictureexample"></div>
+            </div>
+
+
+            <div class="col-xs-12 photoselect">
+              <center>
+                <%= f.input :photo_1 %>
+                <%= f.input :photo_1_cache, as: :hidden %>
+
+              </center>
+            </div>
+            <div class="col-xs-12 photoselect">
+              <center>
+                <%= f.input :photo_2 %>
+                <%= f.input :photo_2_cache, as: :hidden %>
+
+              </center>
+            </div>
+            <div class="col-xs-12 photoselect">
+              <center>
+                <%= f.input :photo_3 %>
+                <%= f.input :photo_3_cache, as: :hidden %>
+
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="next2">
+                NEXT
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="back1">
+                <i class="fas fa-long-arrow-alt-left"></i>back
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="step3 hidden">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12">
+              <center>
+                <h1>Final Details!</h1>
+                <p>Any last things to say?</p>
+              </center>
+            </div>
+            <div class="col-xs-12">
+              <center>
+                <%= f.input :description, placeholder: 'Any useful information for the mechanic?' %>
+              </center>
+            </div>
+            <div class="col-xs-12">
+              <center>
+                <p>Where is the bike?</p>
+                <%= f.input :address, placeholder: "We'll find a mechanic nearby"%>
+              </center>
+            </div>
+            <div class="col-xs-12 hidden">
+              <center>
+                <%= f.input :city %>
+              </center>
+            </div>
+            <div class="col-xs-12 hidden">
+              <center>
+                <%= f.input :postal_code %>
+              </center>
+            </div>
+            <div class="hidden">
+              <center>
+                <%= f.button :submit, "Custom Button Text", class: "formSubmitButton" %>
+              </center>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="next3">
+                SUBMIT
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+              <div class="back2">
+                <i class="fas fa-long-arrow-alt-left"></i>back
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <% end %>
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
 </div>
+
+<script>
+
+
+  document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
+
+  document.querySelectorAll(".selectbox").forEach((box) => {
+    box.addEventListener("click", (e) => {
+      box.classList.toggle("clickedbox");
+      document.querySelector("."+ box.id).click()
+    })
+  })
+
+  const firstPartForm = document.querySelector(".step1");
+  const secondPartForm = document.querySelector(".step2");
+  const thirdPartForm = document.querySelector(".step3");
+
+  document.querySelector(".next1").addEventListener("click", (e) => {
+    firstPartForm.classList.toggle("hidden");
+    secondPartForm.classList.toggle("hidden");
+  })
+  document.querySelector(".next2").addEventListener("click", (e) => {
+    secondPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
+  })
+  document.querySelector(".back1").addEventListener("click", (e) => {
+    firstPartForm.classList.toggle("hidden");
+    secondPartForm.classList.toggle("hidden");
+  })
+  document.querySelector(".back2").addEventListener("click", (e) => {
+    secondPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
+  })
+
+  const submitButton = document.querySelector(".next3");
+  const descriptionField = document.querySelector("#ticket_description");
+  const cityField = document.querySelector("#ticket_city");
+  const addressField = document.querySelector("#ticket_address");
+
+  descriptionField.addEventListener("focus", (e) => {
+    descriptionField.style.border="";
+    submitButton.style.background = "rgb(61,111,75)";
+    submitButton.style.color = "rgb(141,205,160)";
+    submitButton.style.border = "2px solid rrgb(141,205,160)";
+  })
+  addressField.addEventListener("focus", (e) => {
+    addressField.style.border="";
+    submitButton.style.background = "rgb(61,111,75)";
+    submitButton.style.color = "rgb(141,205,160)";
+    submitButton.style.border = "2px solid rrgb(141,205,160)";
+  })
+
+
+  submitButton.addEventListener("click", (e) => {
+
+    if (descriptionField.value.trim() == "") {
+      descriptionField.style.border="2px solid red";
+      submitButton.style.background = "rgb(200,102,86)";
+      submitButton.style.color = "rgb(61,111,75)";
+      submitButton.style.border = "2px solid rgb(61,111,75)";
+    }
+    if (addressField.value.trim() == "") {
+      addressField.style.border="2px solid red";
+      submitButton.style.background = "rgb(200,102,86)";
+      submitButton.style.color = "rgb(61,111,75)";
+      submitButton.style.border = "2px solid rgb(61,111,75)";
+    }
+    if (addressField.value.trim() != "" && descriptionField.value.trim() != "") {
+      document.querySelector(".formSubmitButton").click();
+    }
+
+  })
+
+
+  <% if @ticket.errors[:longitude] != [] %>
+
+    firstPartForm.classList.toggle("hidden");
+    thirdPartForm.classList.toggle("hidden");
+    addressField.style.border="2px solid red";
+    addressField.value = ""
+    addressField.placeholder = "Oops. We couldn't find that on our map..."
+
+  <% end %>
+</script>
