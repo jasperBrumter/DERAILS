@@ -46,22 +46,37 @@
 
   <div class="dash-background">
     <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+          <div class="ticket-show-card">
+            <h2>YOUR TICKET</h2>
+            <h5>choose your mechanic</h5>
 
-        <h2>YOUR TICKET</h2>
-        <p>choose your mechanic</p>
+              <h3><%= "TICKET # #{@ticket.id}" %></h3>
+              <div class="status">
+                <%= @ticket.status %>
+              </div>
+              <%= link_to details_path(@ticket) do %>
+                <div type="button" class="info-button">
+                  VIEW INFO
+                </div>
+              <% end %>
 
-          <%= "TICKET # #{@ticket.id}" %>
-          <%= @ticket.status %>
-          <%= link_to "VIEW INFO", details_path(@ticket) %>
+              <h2>YOUR MESSAGES</h2>
+                <% @ticket.responses.each do |response| %>
+              <div class="response-photo">
 
-          <p>YOUR MESSAGES</p>
-          <% @ticket.responses.each do |response| %>
-            <p><%= response.content %></p>
-          <% end %>
+              </div>
+              <div class="response-content">
+                <p><%= response.user.first_name %></p>
+                <p><%= response.content %></p>
+              </div>
+                <% end %>
+                <strong><%= link_to "◀ back", dashboard_path %></strong>
 
-
-          <%= link_to "back", dashboard_path %>
-
+            </div>
+          </div>
+        </div>
     </div>
   </div>
 
