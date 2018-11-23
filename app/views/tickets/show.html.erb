@@ -70,12 +70,12 @@
 
                   <h2>YOUR MESSAGES</h2>
                   <% @ticket.responses.each do |response| %>
-                    <div class="response-photo">
 
-                    </div>
                     <div class="response-content">
                       <p><%= response.user.first_name %></p>
                       <p><%= response.content %></p>
+                      <p><%= response.price %></p>
+                      <p><%= response.contact %></p>
                     </div>
                   <% end %>
 

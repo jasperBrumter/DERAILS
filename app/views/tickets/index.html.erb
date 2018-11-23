@@ -57,32 +57,34 @@
               <div class="col-xs-12 col-md-6">
                 <div class="ticketcard">
                   <%= "TICKET # #{ticket.id}" %>
+                  <p><%= ticket.address %></p>
 
-                  <% if ticket.tune_up == true %>
-                    <p>Tune Up</p>
-                  <% end %>
-                  <% if ticket.brakes == true %>
-                    <p>Brakes</p>
-                  <% end %>
-                  <% if ticket.flat_tire == true %>
-                    <p>Flat tire</p>
-                  <% end %>
-                  <% if ticket.chain == true %>
-                    <p>Chain</p>
-                  <% end %>
-                  <% if ticket.gears == true %>
-                    <p>Gears</p>
-                  <% end %>
-                  <% if ticket.wheels == true %>
-                    <p>Wheels</p>
-                  <% end %>
-                  <% if ticket.frame == true %>
-                    <p>Frame</p>
-                  <% end %>
+                  <div class="filterdiv">
+                    <% if ticket.tune_up == true %>
+                      <span class="filter-tag">Tune-Up</span>
+                    <% end %>
+                    <% if ticket.brakes == true %>
+                      <span class="filter-tag">Brakes</span>
+                    <% end %>
+                    <% if ticket.flat_tire == true %>
+                      <span class="filter-tag">Flat Tire</span>
+                    <% end %>
+                    <% if ticket.chain == true %>
+                     <span class="filter-tag">Chain</span>
+                    <% end %>
+                    <% if ticket.gears == true %>
+                     <span class="filter-tag">Gears</span>
+                    <% end %>
+                    <% if ticket.wheels == true %>
+                      <span class="filter-tag">Wheels</span>
+                    <% end %>
+                    <% if ticket.frame == true %>
+                      <span class="filter-tag">Frame</span>
+                    <% end %>
+                  </div>
+
 
                   <%= ticket.status %>
-
-                  <%= ticket.address %>
 
                   <%= link_to "VIEW INFO", details_path(ticket) %>
 
