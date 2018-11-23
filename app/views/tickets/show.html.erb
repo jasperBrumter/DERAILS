@@ -53,6 +53,7 @@
             <h5>choose your mechanic</h5>
 
               <h3><%= "TICKET # #{@ticket.id}" %></h3>
+              <p><%= @ticket.created_at.strftime("%F") %></p>
               <div class="status">
                 <%= @ticket.status %>
               </div>
@@ -62,17 +63,27 @@
                 </div>
               <% end %>
 
-              <h2>YOUR MESSAGES</h2>
-                <% @ticket.responses.each do |response| %>
-              <div class="response-photo">
 
+              <% if @ticket.responses.length == 0 %>
+                  <p>There are no answers yet!</p>
+              <% else %>
+
+                  <h2>YOUR MESSAGES</h2>
+                  <% @ticket.responses.each do |response| %>
+                    <div class="response-photo">
+
+                    </div>
+                    <div class="response-content">
+                      <p><%= response.user.first_name %></p>
+                      <p><%= response.content %></p>
+                    </div>
+                  <% end %>
+
+              <% end %>
+
+              <div class="back1">
+                <%= link_to dashboard_path do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
               </div>
-              <div class="response-content">
-                <p><%= response.user.first_name %></p>
-                <p><%= response.content %></p>
-              </div>
-                <% end %>
-                <strong><%= link_to "◀ back", dashboard_path %></strong>
 
             </div>
           </div>
