@@ -11,4 +11,12 @@ class Ticket < ApplicationRecord
 
   validates :latitude, presence: true
   validates :longitude, presence: true
+
+  before_validation(on: :create) do
+    self.status = "pending"
+  end
+
+  def mark_as_done
+    self.status = "completed"
+  end
 end
