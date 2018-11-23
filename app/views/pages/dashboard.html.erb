@@ -52,9 +52,9 @@
 
             <h1><%= @user.first_name %> <%= @user.last_name %></h1>
             <h3><%= @user.email %></h3>
-            <p>Member Since <%= @user.created_at.strftime("%F") %> </p>
+            <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p>
 
-            <%= link_to user_registration_path(@user) do %>
+            <%= link_to "#" do %>
                 <div class="editbutton">EDIT PROFILE</div>
             <% end %>
 
@@ -63,7 +63,7 @@
             <% end %>
 
             <% if @user.is_mechanic %>
-            <%= link_to new_ticket_path do %>
+            <%= link_to tickets_path do %>
               <div class="markbutton">FIND NEW BIKE TO FIX</div>
             <% end %>
             <% end %>
