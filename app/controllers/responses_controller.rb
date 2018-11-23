@@ -8,23 +8,17 @@ class ResponsesController < ApplicationController
     authorize @response
   end
 
-  def new
-    @ticket = Ticket.find(params[:ticket_id])
-    @response = Response.new
-    authorize @response
-  end
-
   def create
     @ticket = Ticket.find(params[:ticket_id])
     @response = Response.new(strongparams)
     @response.ticket = @ticket
-    # authorize @response
-    # @response.user = current_user
-    # if @response.save
-    #   redirect_to response_path(@response)
-    # else
-    #   render :new
-    # end
+    @response.user = current_user
+    authorize @response
+    if @response.save
+      redirect_to dashboard_path(@user)
+    else
+      render :new
+    end
   end
 
   def destroy
@@ -32,10 +26,10 @@ class ResponsesController < ApplicationController
     authorize @response
     @response.destroy
   end
-  
+
   private
-  
+
   def strongparams
-    params.require("response").permit(:content, :price, :contact)
+    params.require(:response).permit(:content, :price, :contact)
   end
 end

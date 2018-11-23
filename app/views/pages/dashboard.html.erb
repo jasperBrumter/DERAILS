@@ -53,10 +53,21 @@
 
     <%= link_to "CREATE NEW TICKET", new_ticket_path %>
 
+
+    <% if @user.is_mechanic %>
+    <h2>Tickets You Answered</h2>
+      <% @user.responses.each do |response|%>
+      <%= "TICKET # #{response.ticket_id}" %>
+      <% end %>
+    <% end %>
+
+
     <h2>Your Tickets</h2>
     <% @user.tickets.each do |ticket| %>
       <%= link_to "TICKET # #{ticket.id}", ticket_path(ticket) %>
     <% end %>
+
+    <%= link_to "back", home_path %>
 
 </div>
 
