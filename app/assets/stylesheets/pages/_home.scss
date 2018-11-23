@@ -12,11 +12,11 @@
   height: 90vh;
   padding-top: 40vh;
   width: 100%;
-  text-align: right;
 
   h1 {
     color: $lightgreen;
     font-family: "Roboto", sans-serif;
+    font-size:28px;
     font-weight: bolder;
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     border-right: .15em solid orange; /* The typwriter cursor */
@@ -26,6 +26,20 @@
     animation:
       typing 3s steps(40, end),
       blink-caret .75s step-end infinite;
+  }
+}
+
+.centerpage {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  h1 {
+    font-size:30px;
+    color: $lightgreen;
+    font-family: "Roboto", sans-serif;
   }
 }
 
