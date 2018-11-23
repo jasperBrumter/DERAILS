@@ -43,31 +43,60 @@
   <%= render 'shared/flashes' %>
   <%= render 'shared/navbar' %>
 
-    <h1><%= @user.first_name %></h1>
-    <h1><%= @user.last_name %></h1>
-    <h3><%= @user.email %></h3>
-
-    <%= link_to user_registration_path(@user) do %>
-        <h4>EDIT</h4>
-    <% end %>
-
-    <%= link_to "CREATE NEW TICKET", new_ticket_path %>
+  <div class="dash-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+          <div class="dash-container">
 
 
-    <% if @user.is_mechanic %>
-    <h2>Tickets You Answered</h2>
-      <% @user.responses.each do |response|%>
-      <%= "TICKET # #{response.ticket_id}" %>
-      <% end %>
-    <% end %>
+            <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+            <h3><%= @user.email %></h3>
+            <p>Member Since <%= @user.created_at.strftime("%F") %> </p>
+
+            <%= link_to user_registration_path(@user) do %>
+                <div class="editbutton">EDIT PROFILE</div>
+            <% end %>
+
+            <%= link_to new_ticket_path do %>
+              <div class="markbutton">CREATE NEW TICKET</div>
+            <% end %>
+
+            <% if @user.is_mechanic %>
+            <%= link_to new_ticket_path do %>
+              <div class="markbutton">FIND NEW BIKE TO FIX</div>
+            <% end %>
+            <% end %>
 
 
-    <h2>Your Tickets</h2>
-    <% @user.tickets.each do |ticket| %>
-      <%= link_to "TICKET # #{ticket.id}", ticket_path(ticket) %>
-    <% end %>
+            <% if @user.is_mechanic %>
+              <h2>Tickets You Responded To</h2>
+                <% @user.responses.each do |response|%>
+                <div class="ticketList">
+                  <%= "TICKET # #{response.ticket_id}" %>
+                </div>
+                <% end %>
+            <% end %>
 
-    <%= link_to "back", home_path %>
+
+            <h2>Your Tickets</h2>
+            <% @user.tickets.each do |ticket| %>
+              <%= link_to ticket_path(ticket) do %>
+                <div class="ticketList">
+                  <%= "TICKET # #{ticket.id}" %>
+                </div>
+              <% end %>
+            <% end %>
+
+            <div class="back1">
+                <%= link_to dashboard_path do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 

@@ -44,30 +44,37 @@
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
 
-    <h1>Ticket Details</h1>
+    <div class="dash-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+            <div class="ticketdetailscard">
+              <h2>Your Ticket Details</h2>
 
-    <p><%= @ticket.id %></p>
+              <p><%= @ticket.id %></p>
 
+
+              <h3>Tags</h3>
     <% if @ticket.tune_up == true %>
-      <p>Tune Up</p>
+      <div class="filter">Tune Up</div>
     <% end %>
     <% if @ticket.brakes == true %>
-      <p>Brakes</p>
+      <div class="filter">Brakes</div>
     <% end %>
     <% if @ticket.flat_tire == true %>
-      <p>Flat tire</p>
+      <div class="filter">Flat tire</div>
     <% end %>
     <% if @ticket.chain == true %>
-      <p>Chain</p>
+      <div class="filter">Chain</div>
     <% end %>
     <% if @ticket.gears == true %>
-      <p>Gears</p>
+      <div class="filter">Gears</div>
     <% end %>
     <% if @ticket.wheels == true %>
-      <p>Wheels</p>
+      <div class="filter">Wheels</div>
     <% end %>
     <% if @ticket.frame == true %>
-      <p>Frame</p>
+      <div class="filter">Frame</div>
     <% end %>
 
 
@@ -77,15 +84,18 @@
     <% end %>
 
     <h3>Description</h3>
-    <%= @ticket.description %>
+    <p><%= @ticket.address %></p>
+    <p><%= @ticket.description %></p>
 
     <% if policy(@ticket).edit? %>
         <%= link_to edit_ticket_path(@ticket) do%>
-          <h4>EDIT</h4>
+          <div class="editbutton">EDIT</div>
         <% end %>
+        <div class="markbutton">MARK AS COMPLETE</div>
         <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
-          <h4>DELETE</h4>
+          <div class="deletebutton">DELETE</div>
         <% end %>
+
     <% elsif current_user.is_mechanic==true %>
 
         <%= simple_form_for ([@ticket, @response]) do |f| %>
@@ -97,8 +107,16 @@
 
     <% end %>
 
-    <%= link_to "back", ticket_path(@ticket)%>
+      <div class="back1">
+        <%= link_to ticket_path(@ticket) do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
+      </div>
+            </div>
 
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 </div>
 
