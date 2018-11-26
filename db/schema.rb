@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_171351) do
     t.string "first_name"
     t.string "photo"
     t.boolean "is_mechanic"
-    t.integer "rating"
+    t.float "rating"
     t.string "last_name"
     t.string "provider"
     t.string "uid"
