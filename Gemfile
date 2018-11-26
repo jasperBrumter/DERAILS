@@ -10,6 +10,7 @@ gem "pundit"
 gem 'rails', '5.2.1'
 gem 'redis'
 gem "geocoder"
+gem "omniauth-facebook"
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'
