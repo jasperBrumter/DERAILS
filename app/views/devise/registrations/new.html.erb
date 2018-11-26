@@ -5,13 +5,21 @@
 <div id="restofpage">
     <%= render 'shared/flashes' %>
     <%= render 'shared/navbar' %>
-  <div class="mainbackground"></div>
-  <div class="container">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-        <div class="signupform">
-            <h2>Sign up</h2>
+  <div id="beige-bg"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+          <div id="title">
+            <h2 id="title_top">Sign up </h2>
+            <center>
+              <%= link_to "/users/auth/facebook" do%>
+                <div class="fb-btn">
+                  <h6>Sign up with Facebook</h6>
+                </div>
+              <% end %>
+            </center>
 
+            <div class="forms-all">
             <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
               <%= f.error_notification %>
 
@@ -26,11 +34,18 @@
                             required: true,
                             autofocus: true ,
                             input_html: { autocomplete: "email" }%>
-                <%= f.input :is_mechanic,
-                            label: ' Would you like to fix bikes? ',
-                            as: :boolean,
-                            required: false,
-                            autofocus: true %>
+                <fieldset class="form-group boolean optional user_is_mechanic">
+                  <div class="form-check">
+                    <input name="user[is_mechanic]" type="hidden" value="0">
+                    <input class="form-check-input boolean optional hidden" autofocus="autofocus" type="checkbox" value="1" name="user[is_mechanic]" id="user_is_mechanic">
+                    <label class="form-check-label boolean optional" for="user_is_mechanic">Would you like to fix bikes?</label>
+                    <div class="yesno">
+                      <div class="yesnoopt">YES</div>
+                      <div class="yesnoopt">NO</div>
+                    </div>
+                  </div>
+                </fieldset>
+
                 <%= f.input :password,
                             required: true,
                             hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
@@ -41,13 +56,42 @@
               </div>
 
               <div class="form-actions">
-                <%= f.button :submit, "Sign up" %>
+                <%= f.button :submit, "Sign up", class: "new-btn" %>
               </div>
             <% end %>
+            <div class="login-style-space">
+              <a href="/users/sign_in">Log in</a><br>
+            </div>
+          </div>
 
-            <%= render "devise/shared/links" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll(".navbar-derails")[1].style.background= "rgb(61,111,75)";
+  document.querySelectorAll(".navbar-derails")[1].style.borderBottom="1px solid rgb(141,205,160)";
+
+  const mechbuttons = document.querySelectorAll(".yesnoopt");
+  mechbuttons[1].style.background = "rgb(242,233,217)";
+  mechbuttons[1].style.color = "rgb(61,111,75)";
+
+  mechbuttons[0].addEventListener("click", (e) => {
+    mechbuttons[0].style.background = "rgb(242,233,217)";
+    mechbuttons[0].style.color = "rgb(61,111,75)";
+    mechbuttons[1].style.background = "rgb(61,111,75)";
+    mechbuttons[1].style.color = "rgb(242,233,217)";
+    mechbuttons[1].style.border = "2px solid rgb(242,233,217)";
+    document.getElementById("user_is_mechanic").checked=true;
+  })
+  mechbuttons[1].addEventListener("click", (e) => {
+    mechbuttons[1].style.background = "rgb(242,233,217)";
+    mechbuttons[1].style.color = "rgb(61,111,75)";
+    mechbuttons[0].style.background = "rgb(61,111,75)";
+    mechbuttons[0].style.color = "rgb(242,233,217)";
+    mechbuttons[0].style.border = "2px solid rgb(242,233,217)";
+    document.getElementById("user_is_mechanic").checked=false;
+  })
+</script>
