@@ -56,7 +56,28 @@
   from, to { border-color: transparent }
   50% { border-color: orange; }
 }
-
+.mainHomeText {
+  font-family: 'Pacifico', cursive;
+  font-size: 100px;
+  color: $lightgreen;
+  height: 100vh;
+  width: 100%;
+  letter-spacing: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -ms-transform: rotate(-20deg); /* IE 9 */
+    -webkit-transform: rotate(-20deg); /* Safari */
+    transform: rotate(-20deg);
+  transition: .25s ease;
+  text-decoration: none;
+  &:hover {
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: $lightgreen;
+    text-decoration: none;
+  }
+}
 .menupopup {
   height: 100vh;
   width: 100%;
@@ -174,6 +195,14 @@
 
 .step {
   margin-top: 50px;
+  opacity: 1;
+  transition: 1.5s opacity;
+
+  &.fade {
+    transition: 0.7s opacity;
+      opacity: 0;
+      transition: none;
+  }
 }
 
 .calltoactionhome {
@@ -185,5 +214,11 @@
   &:hover {
     text-decoration: line-through;
     text-decoration-style: solid;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .mainHomeText {
+    font-size: 70px;
   }
 }

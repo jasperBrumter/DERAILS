@@ -1,30 +1,4 @@
-.mainbutton {
-  width: 100%;
-  height: 60px;
-  color: $darkgreen;
-  background-color: $lightgreen;
-  border-radius: 60px 2px 60px 2px;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin: 20% auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 3px solid $darkgreen;
-  margin-top: 45vh;
-  transition: .3s ease;
-  &:hover {
-    background-color: $lightgreen;
-    color: $darkgreen;
-    border: 1px solid $darkgreen;
-    border-bottom: 5px solid $darkgreen;
-  }
-  h4 {
-    letter-spacing: 10px;
-    font-weight: bolder;
-    font-size: 22px;
-  }
-}
+
 
 a {
   text-decoration: none;
