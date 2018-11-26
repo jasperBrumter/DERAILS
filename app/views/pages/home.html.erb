@@ -11,8 +11,8 @@
       <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
           <%= link_to new_ticket_path do%>
-            <div class="mainbutton">
-              <h4>FIX MY BIKE</h4>
+            <div class="mainHomeText">
+              Fix My Bike
             </div>
           <% end %>
         </div>
@@ -149,7 +149,6 @@
 
 
 
-
   document.addEventListener("scroll", (e) => {
     if (document.querySelector(".howitworks").offsetTop < window.pageYOffset) {
       document.querySelectorAll(".navbar-derails").forEach((x) => {
@@ -163,6 +162,82 @@
         x.style.border=""
       })
     }
+
+
+    const step1 = document.querySelector(".step1title");
+    if (step1.getBoundingClientRect().top < 400) {
+      step1.classList.remove("fade")
+    }
+    else {
+      step1.classList.add("fade")
+    }
+    const step2 = document.querySelector(".step2title");
+    if (step2.getBoundingClientRect().top < 400) {
+      step2.classList.remove("fade")
+    }
+    else {
+      step2.classList.add("fade")
+    }
+    const step3 = document.querySelector(".step3title");
+    if (step3.getBoundingClientRect().top < 400) {
+      step3.classList.remove("fade")
+    }
+    else {
+      step3.classList.add("fade")
+    }
+    const step4 = document.querySelector(".step4title");
+    if (step4.getBoundingClientRect().top < 400) {
+      step4.classList.remove("fade")
+    }
+    else {
+      step4.classList.add("fade")
+    }
+    const step5 = document.querySelector(".step5title");
+        console.log(step5.getBoundingClientRect().top)
+
+    if (step5.getBoundingClientRect().top < 400) {
+      step5.classList.remove("fade")
+    }
+    else {
+      step5.classList.add("fade")
+    }
+
+    const step1img = document.querySelector(".divstep1");
+    if (step1img.getBoundingClientRect().top < 400) {
+      step1img.classList.remove("fade")
+    }
+    else {
+      step1img.classList.add("fade")
+    }
+    const step2img = document.querySelector(".divstep2");
+    if (step2img.getBoundingClientRect().top < 400) {
+      step2img.classList.remove("fade")
+    }
+    else {
+      step2img.classList.add("fade")
+    }
+    const step3img = document.querySelector(".divstep3");
+    if (step3img.getBoundingClientRect().top < 400) {
+      step3img.classList.remove("fade")
+    }
+    else {
+      step3img.classList.add("fade")
+    }
+    const step4img = document.querySelector(".divstep4");
+    if (step4img.getBoundingClientRect().top < 400) {
+      step4img.classList.remove("fade")
+    }
+    else {
+      step4img.classList.add("fade")
+    }
+    const step5img = document.querySelector(".divstep5");
+    if (step5img.getBoundingClientRect().top < 400) {
+      step5img.classList.remove("fade")
+    }
+    else {
+      step5img.classList.add("fade")
+    }
+
   })
 </script>
 
