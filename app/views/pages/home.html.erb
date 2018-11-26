@@ -133,6 +133,21 @@
 
 
 <script>
+  if( document.querySelector("#specialcase1") == null ) {
+    document.querySelector("#specialcase2").addEventListener("click", (e) => {
+      document.querySelector(".menupopup").classList.toggle("hidden");
+      document.querySelector("#restofpage").classList.toggle("hidden");
+      console.log(e)
+    })
+  }
+  else {
+    document.querySelector("#specialcase1").addEventListener("click", (e) => {
+      document.querySelector(".menupopup").classList.toggle("hidden");
+      document.querySelector("#restofpage").classList.toggle("hidden");
+    })
+  }
+
+
 
 
   document.addEventListener("scroll", (e) => {

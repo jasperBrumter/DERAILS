@@ -10,8 +10,8 @@
         <div class="menuoption">
           <h1><%= link_to "Sign Up", new_user_registration_path %></h1>
         </div>
-        <div class="menuoption" id="homeLink">
-          <h1><%= link_to "About Us", home_path+"#discover" %></h1>
+        <div class="menuoption" id="specialcase1">
+          <h1><%= link_to "About Us", home_path+"#discover"%></h1>
         </div>
       <% else %>
         <div class="menuoption">
@@ -26,8 +26,8 @@
             <h1><%= link_to "New Ticket", new_ticket_path %></h1>
           </div>
         <% end %>
-        <div class="menuoption">
-          <h1><%= link_to "About Us", home_path+"#discover" %></h1>
+        <div class="menuoption" id="specialcase2">
+          <h1><%= link_to "About Us", home_path+"#discover"%></h1>
         </div>
         <div class="menuoption">
           <h1><%= link_to "Log Out", destroy_user_session_path, method: "delete" %></h1>
