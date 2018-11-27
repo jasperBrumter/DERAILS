@@ -13,20 +13,35 @@ if (addressInput) {
   });
 }
 
+let map;
+let markerObjects =[];
 
 if (mapElement) { // only build a map if there's a div#map to inject into
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
-  const map = new mapboxgl.Map({
+  map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v10'
+    style: 'mapbox://styles/flourish-creative/cjoswie6c7ut62rmnxp0290oo'
   });
+  reloadMarkers();
 
-  const markers = JSON.parse(mapElement.dataset.markers);
+  map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  }));
+}
+
+function reloadMarkers() {
+  const mapData = document.getElementById('mapdatacontainer');
+  if (markerObjects) {
+    markerObjects.forEach((marker) => {
+      marker.remove();
+    })
+  }
+  const markers = JSON.parse(mapData.dataset.markers);
 
   markers.forEach((marker) => {
-    new mapboxgl.Marker()
-      .setLngLat([marker.lng, marker.lat])
-      .addTo(map);
+    const markerObject = new mapboxgl.Marker();
+      markerObject.setLngLat([marker.lng, marker.lat]).addTo(map);
+      markerObjects.push(markerObject)
   })
 
   if (markers.length === 0) {
@@ -41,8 +56,6 @@ if (mapElement) { // only build a map if there's a div#map to inject into
     });
     map.fitBounds(bounds, { duration: 0, padding: 75 })
   }
-
-  map.addControl(new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken
-  }));
 }
+
+window.reloadMarkers = reloadMarkers;

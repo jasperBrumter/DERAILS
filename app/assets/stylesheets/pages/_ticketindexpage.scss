@@ -1,6 +1,6 @@
 #map {
   width: 98%;
-  margin: 100px auto 0px auto;
+  margin: 0px auto 0px auto;
   height: 50vh;
 }
 
@@ -31,3 +31,27 @@
   justify-content: flex-start;
   overflow: scroll;
 }
+
+.searchfilters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 95%;
+  margin-top: 100px;
+  margin-bottom: 30px;
+
+  .searchfilter {
+    padding: 3px;
+    background-color: $lightgreen;
+    color: $beige;
+    margin: 1px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid $beige;
+    border-right: 1px solid $beige;
+  }
+}
+

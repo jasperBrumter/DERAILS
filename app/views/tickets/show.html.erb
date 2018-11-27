@@ -16,9 +16,18 @@
 
               <h3><%= "TICKET # #{@ticket.id}" %></h3>
               <p><%= @ticket.created_at.strftime("%F") %></p>
-              <div class="status">
-                <%= @ticket.status %>
-              </div>
+
+              <% if @ticket.status == "pending" %>
+                <div class="status-pending">
+                  <%= @ticket.status %>
+                </div>
+              <% else %>
+                <div class="status-completed">
+                  <%= @ticket.status %>
+                </div>
+              <% end %>
+
+
               <%= link_to details_path(@ticket) do %>
                 <div type="button" class="info-button">
                   VIEW INFO

@@ -39,9 +39,8 @@
     <% end %>
 
 
-
     <% if @ticket.photo_1.file %>
-    <%= cl_image_tag @ticket.photo_1 %>
+      <%= cl_image_tag @ticket.photo_1 %>
     <% end %>
 
     <h3>Description</h3>
@@ -49,10 +48,14 @@
     <p><%= @ticket.description %></p>
 
     <% if policy(@ticket).edit? %>
+      <% if @ticket.status == "pending" %>
         <%= link_to edit_ticket_path(@ticket) do%>
           <div class="editbutton">EDIT</div>
         <% end %>
-        <div class="markbutton">MARK AS COMPLETE</div>
+          <%= link_to "/tickets/#{@ticket.id}", method: "change_status" do%>
+            <div class="markbutton">MARK AS COMPLETE</div>
+          <% end %>
+        <% end %>
         <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
           <div class="deletebutton">DELETE</div>
         <% end %>
