@@ -1,8 +1,8 @@
 class TicketsController < ApplicationController
   def index
     @tickets = policy_scope(Ticket)
-    @tickets_with_markers = @tickets.where.not(latitude: nil, longitude: nil)
-
+    @pending_tickets = @tickets.where(status: "pending")
+    @tickets_with_markers = @pending_tickets.where.not(latitude: nil, longitude: nil)
     @markers = @tickets_with_markers.map do |ticket|
       {
         lng: ticket.longitude,
@@ -56,6 +56,17 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @response = Response.new
     authorize @ticket
+  end
+
+  def change_status
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+    @ticket.status = "completed"
+    if @ticket.save
+      redirect_to ticket_path(@ticket)
+    else
+      render :new
+    end
   end
 
   private
