@@ -1,8 +1,12 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = policy_scope(Ticket)
+    @tickets = policy_scope(Ticket).where(status: "pending")
+
+    @tickets = @tickets.where.not(latitude: nil, longitude: nil)
+
     if params["wheels"] or params["tune_up"] or params["brakes"] or params["flat_tire"] or params["chain"] or params["gears"] or params["frame"] or params["other"]
       paramHash = {}
+      
       paramHash[:wheels] = true if params["wheels"]
       paramHash[:brakes] = true if params["brakes"]
       paramHash[:flat_tire] = true if params["flat_tire"]
@@ -13,9 +17,10 @@ class TicketsController < ApplicationController
       paramHash[:other] = true if params["other"]
       @tickets = @tickets.where(paramHash)
     end
-    @tickets_with_markers = @tickets.where.not(latitude: nil, longitude: nil)
+   
 
-    @markers = @tickets_with_markers.map do |ticket|
+
+    @markers = @tickets.map do |ticket|
       {
         lng: ticket.longitude,
         lat: ticket.latitude
@@ -68,6 +73,17 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @response = Response.new
     authorize @ticket
+  end
+
+  def change_status
+    @ticket = Ticket.find(params[:id])
+    authorize @ticket
+    @ticket.status = "completed"
+    if @ticket.save
+      redirect_to ticket_path(@ticket)
+    else
+      render :new
+    end
   end
 
   private

@@ -53,10 +53,23 @@
 
 
 
-.status {
+.status-pending {
   width: 300px;
   height: 40px;
   background-color: $red;
+  text-align: center;
+  padding: 5px;
+  margin: 10px;
+  color: $beige;
+  .status:hover{
+    color: white;
+  }
+}
+
+.status-completed {
+  width: 300px;
+  height: 40px;
+  background-color: $lightgreen;
   text-align: center;
   padding: 5px;
   margin: 10px;

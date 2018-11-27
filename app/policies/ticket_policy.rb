@@ -31,4 +31,8 @@ class TicketPolicy < ApplicationPolicy
   def details?
     true
   end
+
+  def change_status?
+    record.user == user
+  end
 end
