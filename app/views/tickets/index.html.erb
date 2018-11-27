@@ -7,60 +7,67 @@
 
     <div class="secondaryinvertedbackground">
 
-    <h1>ALL TICKETS</h1>
-
-      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-
-      <div class="ticketscontainer">
+      <div class="searchfilters">
         <div class="container">
           <div class="row">
-            <% @tickets.each do |ticket| %>
-              <div class="col-xs-12 col-md-6">
-                <div class="ticketcard">
-                  <%= "TICKET # #{ticket.id}" %>
-                  <p><%= ticket.address %></p>
-
-                  <div class="filterdiv">
-                    <% if ticket.tune_up == true %>
-                      <span class="filter-tag">Tune-Up</span>
-                    <% end %>
-                    <% if ticket.brakes == true %>
-                      <span class="filter-tag">Brakes</span>
-                    <% end %>
-                    <% if ticket.flat_tire == true %>
-                      <span class="filter-tag">Flat Tire</span>
-                    <% end %>
-                    <% if ticket.chain == true %>
-                     <span class="filter-tag">Chain</span>
-                    <% end %>
-                    <% if ticket.gears == true %>
-                     <span class="filter-tag">Gears</span>
-                    <% end %>
-                    <% if ticket.wheels == true %>
-                      <span class="filter-tag">Wheels</span>
-                    <% end %>
-                    <% if ticket.frame == true %>
-                      <span class="filter-tag">Frame</span>
-                    <% end %>
-                  </div>
-
-
-                  <%= ticket.status %>
-
-                  <%= link_to "VIEW INFO", details_path(ticket) %>
-
-                </div>
+            <%= form_tag tickets_path, method: "get", remote:true, id: "searchform" do%>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="tune_up" value="tune_up">Tune-up
               </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="brakes" value="brakes">Brakes
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="flat_tire" value="flat_tire">Flat Tire
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="chain" value="chain">Chain
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="gears" value="gears">Gears
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="wheels" value="wheels">Wheels
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="frame" value="frame">Frame
+              </div>
+              <div class="searchfilter col-xs-3">
+                <input type="checkbox" class="filtercheckbox hidden" name="other" value="other">Other
+              </div>
+              <input class="hidden" type="submit" value="Submit" id="submitSearch">
             <% end %>
 
           </div>
         </div>
       </div>
 
+      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+
+      <div class="ticketscontainer">
+       <%= render "indexcards" %>
+      </div>
+
       <%= link_to "back", dashboard_path %>
 
     </div>
-
-
 </div>
+
+<script>
+  document.querySelectorAll(".searchfilter").forEach((filter) => {
+    filter.addEventListener("click", (e) => {
+      const thisfilter = filter.querySelector(".filtercheckbox");
+      if(thisfilter.checked==true){
+        thisfilter.checked=false;
+        filter.style.background="rgb(141,205,160)";
+        document.querySelector("#submitSearch").click();
+      }
+      else {
+        thisfilter.checked=true
+        filter.style.background="rgb(61,111,75)";
+        document.querySelector("#submitSearch").click();
+      }
+    })
+  })
+</script>
