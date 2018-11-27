@@ -66,7 +66,10 @@
           <%= f.input :content %>
           <%= f.input :price %>
           <%= f.input :contact %>
-          <%= f.submit %>
+          <%= f.button :submit,  class: "answer-button hidden" %>
+            <div class="next3">
+              Answer
+            </div>
         <% end %>
 
     <% end %>
@@ -84,3 +87,10 @@
 
 </div>
 
+
+<script>
+  document.querySelector(".next3").addEventListener("click", (e) => {
+    document.querySelector(".answer-button").click();
+  })
+
+</script>

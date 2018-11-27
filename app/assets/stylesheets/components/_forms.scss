@@ -1,11 +1,11 @@
 .signupform {
-  background-color: rgba(61,111,75,0.7);
+  background-color: $darkgreen;
   margin-top: 20vh;
   padding: 25px;
-  border-radius: 25px;
-  border: 1px solid $royalgreen;
+  height: 100%;
+  margin-top: -20px;
   h1,h2,h3,h4,h5,h6,p {
-    color: $lightgreen;
+    color: $beige;
   }
   a {
     text-decoration: none;
@@ -20,11 +20,12 @@
 }
 
 .signinform {
-  background-color: rgba(61,111,75,0.7);
-  margin-top: 20vh;
+  background-color: $darkgreen;
   padding: 25px;
-  border-radius: 25px;
   border: 1px solid $royalgreen;
+  height: 1000px;
+  width: 1000px;
+  margin-top: -20px;
   h1,h2,h3,h4,h5,h6,p {
     color: $lightgreen;
   }

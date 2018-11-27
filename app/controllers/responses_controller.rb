@@ -15,7 +15,7 @@ class ResponsesController < ApplicationController
     @response.user = current_user
     authorize @response
     if @response.save
-      redirect_to dashboard_path(@user)
+      redirect_to ticket_path(@ticket)
     else
       render :new
     end
