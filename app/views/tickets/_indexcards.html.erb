@@ -3,7 +3,7 @@
     <% @tickets.each do |ticket| %>
       <div class="col-xs-12 col-md-6">
         <div class="ticketcard">
-          <%= "TICKET # #{ticket.id}" %>
+          <h1 class="ticket-title" ><%= "TICKET # #{ticket.id}" %></h1>
           <p><%= ticket.address %></p>
 
           <div class="filterdiv">
@@ -31,9 +31,11 @@
           </div>
 
 
-          <%= ticket.status %>
-
-          <%= link_to "VIEW INFO", details_path(ticket) %>
+          <%= link_to details_path(ticket) do %>
+            <div class="markbutton">
+              VIEW INFO
+            </div>
+          <% end %>
 
         </div>
       </div>

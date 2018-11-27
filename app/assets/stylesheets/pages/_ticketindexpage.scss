@@ -1,13 +1,14 @@
 #map {
   width: 98%;
   margin: 0px auto 0px auto;
-  height: 50vh;
+  height: 60vh;
+  margin-top: 100px;
 }
 
 .ticketscontainer {
   width: 98%;
   margin: 10px auto 0px auto;
-  height: 50vh;
+  height: 40vh;
   overflow: scroll;
 }
 
@@ -39,13 +40,13 @@
   align-items: flex-start;
   justify-content: space-between;
   width: 95%;
-  margin-top: 100px;
   margin-bottom: 30px;
+  margin-top: 20px;
 
   .searchfilter {
     padding: 3px;
     background-color: $lightgreen;
-    color: $beige;
+    color: $darkgreen;
     margin: 1px 0px;
     display: flex;
     align-items: center;
