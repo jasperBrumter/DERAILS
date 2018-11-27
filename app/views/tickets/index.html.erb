@@ -7,6 +7,9 @@
 
     <div class="secondaryinvertedbackground">
 
+      <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+
+
       <div class="searchfilters">
         <div class="container">
           <div class="row">
@@ -44,9 +47,6 @@
         </div>
       </div>
 
-      <div id="map" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-
-
       <div class="ticketscontainer">
        <%= render "indexcards" %>
       </div>
@@ -63,11 +63,13 @@
       if(thisfilter.checked==true){
         thisfilter.checked=false;
         filter.style.background="rgb(141,205,160)";
+        filter.style.color="rgb(61,111,75)";
         document.querySelector("#submitSearch").click();
       }
       else {
         thisfilter.checked=true
         filter.style.background="rgb(61,111,75)";
+        filter.style.color="rgb(141,205,160)";
         document.querySelector("#submitSearch").click();
       }
     })
