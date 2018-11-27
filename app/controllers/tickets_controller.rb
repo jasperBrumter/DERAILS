@@ -1,9 +1,26 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = policy_scope(Ticket)
-    @pending_tickets = @tickets.where(status: "pending")
-    @tickets_with_markers = @pending_tickets.where.not(latitude: nil, longitude: nil)
-    @markers = @tickets_with_markers.map do |ticket|
+    @tickets = policy_scope(Ticket).where(status: "pending")
+
+    @tickets = @tickets.where.not(latitude: nil, longitude: nil)
+
+    if params["wheels"] or params["tune_up"] or params["brakes"] or params["flat_tire"] or params["chain"] or params["gears"] or params["frame"] or params["other"]
+      paramHash = {}
+      
+      paramHash[:wheels] = true if params["wheels"]
+      paramHash[:brakes] = true if params["brakes"]
+      paramHash[:flat_tire] = true if params["flat_tire"]
+      paramHash[:chain] = true if params["chain"]
+      paramHash[:gears] = true if params["gears"]
+      paramHash[:frame] = true if params["frame"]
+      paramHash[:tune_up] = true if params["tune_up"]
+      paramHash[:other] = true if params["other"]
+      @tickets = @tickets.where(paramHash)
+    end
+   
+
+
+    @markers = @tickets.map do |ticket|
       {
         lng: ticket.longitude,
         lat: ticket.latitude
