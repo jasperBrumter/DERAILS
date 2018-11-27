@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-markers="<%= @markers.to_json %>" id="mapdatacontainer">
   <div class="row">
     <% @tickets.each do |ticket| %>
       <div class="col-xs-12 col-md-6">

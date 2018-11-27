@@ -6,7 +6,7 @@ class TicketsController < ApplicationController
 
     if params["wheels"] or params["tune_up"] or params["brakes"] or params["flat_tire"] or params["chain"] or params["gears"] or params["frame"] or params["other"]
       paramHash = {}
-      
+
       paramHash[:wheels] = true if params["wheels"]
       paramHash[:brakes] = true if params["brakes"]
       paramHash[:flat_tire] = true if params["flat_tire"]
@@ -17,7 +17,7 @@ class TicketsController < ApplicationController
       paramHash[:other] = true if params["other"]
       @tickets = @tickets.where(paramHash)
     end
-   
+
 
 
     @markers = @tickets.map do |ticket|
