@@ -1,0 +1,40 @@
+<% provide(:title, "Profile") %>
+
+<div id="restofpage">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+
+  <div class="dash-background">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
+          <div class="dash-container">
+            <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+            <p><%= @user.average_rating.round(1) %></p>
+            <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p> <hr>
+            <% @user.reviews.each do |review| %>
+            <div class="ratingline">
+              <% review.rating.times do %>
+                <i class="fas fa-star"></i>
+              <% end %>
+              <% (5 - review.rating).times do %>
+                <i class="far fa-star"></i>
+              <% end %>
+            </div>
+
+              <p><%= review.content %></p>
+            <% end %>
+
+            <%= simple_form_for [@user, @review], url: :create_review do |f| %>
+              <%= f.input :rating  %>
+              <%= f.input :content %>
+              <%= f.submit "add a review" %>
+            <% end %>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
