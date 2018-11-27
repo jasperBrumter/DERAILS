@@ -63,7 +63,6 @@
   box-shadow: none;
   border: none;
   border-bottom: 3px solid $beige;
-  background-color: $darkgreen;
     &:focus {
       box-shadow: none;
       border-color: $lightgreen;
@@ -131,4 +130,8 @@ a {
     transition: .3s ease;
     border-radius: 5px;
   }
+}
+
+.submit-button {
+  background-color: $lightgreen;
 }
