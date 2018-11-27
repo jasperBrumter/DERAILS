@@ -44,6 +44,7 @@
 
                     <div class="response-content">
                       <p><%= response.user.first_name %></p>
+                      <p><%= link_to "info", profile_path(response.user)%></p>
                       <p><%= response.content %></p>
                       <p><%= response.price %></p>
                       <p><%= response.contact %></p>

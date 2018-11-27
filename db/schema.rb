@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_26_171351) do
+ActiveRecord::Schema.define(version: 2018_11_27_201840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2018_11_26_171351) do
     t.datetime "updated_at", null: false
     t.index ["ticket_id"], name: "index_responses_on_ticket_id"
     t.index ["user_id"], name: "index_responses_on_user_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -65,7 +74,7 @@ ActiveRecord::Schema.define(version: 2018_11_26_171351) do
     t.string "first_name"
     t.string "photo"
     t.boolean "is_mechanic"
-    t.integer "rating"
+    t.float "average_rating"
     t.string "last_name"
     t.string "provider"
     t.string "uid"
@@ -78,5 +87,6 @@ ActiveRecord::Schema.define(version: 2018_11_26_171351) do
 
   add_foreign_key "responses", "tickets"
   add_foreign_key "responses", "users"
+  add_foreign_key "reviews", "users"
   add_foreign_key "tickets", "users"
 end
