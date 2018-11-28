@@ -8,6 +8,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  mount_uploader :photo, PhotoUploader
+
   before_validation(on: :create) do
     self.average_rating = 0.0
   end

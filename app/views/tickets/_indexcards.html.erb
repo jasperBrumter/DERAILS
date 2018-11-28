@@ -2,44 +2,41 @@
   <div class="row">
     <% @tickets.each do |ticket| %>
       <div class="col-xs-12 col-md-6">
-        <div class="ticketcard">
-          <h1 class="ticket-title" ><%= "TICKET # #{ticket.id}" %></h1>
-          <p><%= ticket.address %></p>
+        <%= link_to details_path(ticket) do %>
+          <div class="ticketcard">
+            <h1 class="ticket-title" ><%= "TICKET # #{ticket.id}" %></h1>
+            <p><%= ticket.address %></p>
 
-          <div class="filterdiv">
-            <% if ticket.tune_up == true %>
-              <span class="filter-tag">Tune-Up</span>
-            <% end %>
-            <% if ticket.brakes == true %>
-              <span class="filter-tag">Brakes</span>
-            <% end %>
-            <% if ticket.flat_tire == true %>
-              <span class="filter-tag">Flat Tire</span>
-            <% end %>
-            <% if ticket.chain == true %>
-             <span class="filter-tag">Chain</span>
-            <% end %>
-            <% if ticket.gears == true %>
-             <span class="filter-tag">Gears</span>
-            <% end %>
-            <% if ticket.wheels == true %>
-              <span class="filter-tag">Wheels</span>
-            <% end %>
-            <% if ticket.frame == true %>
-              <span class="filter-tag">Frame</span>
-            <% end %>
-          </div>
-
-
-          <%= link_to details_path(ticket) do %>
-            <div class="markbutton">
-              VIEW INFO
+            <div class="filterdiv">
+              <% if ticket.tune_up == true %>
+                <span class="filter-tag">Tune-Up</span>
+              <% end %>
+              <% if ticket.brakes == true %>
+                <span class="filter-tag">Brakes</span>
+              <% end %>
+              <% if ticket.flat_tire == true %>
+                <span class="filter-tag">Flat Tire</span>
+              <% end %>
+              <% if ticket.chain == true %>
+               <span class="filter-tag">Chain</span>
+              <% end %>
+              <% if ticket.gears == true %>
+               <span class="filter-tag">Gears</span>
+              <% end %>
+              <% if ticket.wheels == true %>
+                <span class="filter-tag">Wheels</span>
+              <% end %>
+              <% if ticket.frame == true %>
+                <span class="filter-tag">Frame</span>
+              <% end %>
             </div>
-          <% end %>
+            <p><%= ticket.responses.count %> have answered</p>
 
-        </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
+
 
   </div>
 </div>

@@ -1,5 +1,5 @@
 
-<% provide(:title, "Sign Up") %>
+<% provide(:title, "Edit Account") %>
 
 
 <div id="restofpage">
@@ -35,6 +35,8 @@
                             hint: "we need your current password to confirm your changes",
                             required: true,
                             input_html: { autocomplete: "current-password" } %>
+                <%= f.input :photo %>
+                <%= f.input :photo_cache, as: :hidden %>
               </div>
 
               <fieldset class="form-group boolean optional user_is_mechanic">
@@ -49,16 +51,18 @@
                 </div>
               </fieldset>
 
-              <div class="form-actions">
-                <%= f.button :submit, "Update Settings" %>
-              </div>
+              <center>
+                <div class="form-actions markbutton">
+                  <%= f.button :submit, "Update Settings" %>
+                </div>
+              </center>
             <% end %>
 
             <h3>Cancel my account</h3>
 
             <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-            <%= link_to "Back", :back %>
+
           </div>
         </div>
       </div>

@@ -11,15 +11,14 @@
       <div class="row">
         <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
           <div class="ticket-show-card">
-            <h2>TICKET</h2>
-            <% if @ticket.user.is_mechanic %>
-            <h5>choose your mechanic</h5>
-            <% end %>
+            <h2>TICKET # <%=@ticket.id %></h2>
 
-              <h3><%= "TICKET # #{@ticket.id}" %></h3>
-              <p><%= @ticket.created_at.strftime("%F") %></p>
 
-              <% if @ticket.status == "pending" %>
+
+
+            <p>Created <%= @ticket.created_at.strftime("%b %e, %l:%M %p") %></p>
+
+             <% if @ticket.status == "pending" %>
                 <div class="status-pending">
                   <%= @ticket.status %>
                 </div>
@@ -30,11 +29,31 @@
               <% end %>
 
 
-              <%= link_to details_path(@ticket) do %>
+                    <%= link_to details_path(@ticket) do %>
                 <div type="button" class="info-button">
                   VIEW INFO
                 </div>
               <% end %>
+
+  <br><br>
+
+            <% if @ticket.responses.count == 0 %>
+              <p>Nobody has answered on this ticket yet</p>
+            <% elsif @ticket.responses.count == 1%>
+              <p>There is 1 answer to this ticket</p>
+              <% if @ticket.user == @user %>
+                <p>Please choose your mechanic</p>
+              <% end %>
+            <% else %>
+              <p>There are <%= @ticket.responses.count %> answers to this ticket</p>
+              <% if @ticket.user == @user %>
+                <p>Please choose your mechanic</p>
+              <% end %>
+            <% end %>
+
+
+
+
 
 
               <% if @ticket.responses.length == 0 %>
@@ -43,22 +62,35 @@
 
                   <h2>MESSAGES</h2>
 
-                  <% if current_user.is_mechanic %>
-                    <% @responses.each do |response| %>
-                    <p><%= response.content %></p>
-                    <% end %>
-                  <% elsif %>
-                    <% @ticket.responses.each do |response| %>
 
-                    <div class="response-content">
-                      <p><%= response.user.first_name %></p>
-                      <p><%= link_to "info", profile_path(response.user)%></p>
-                      <p><%= response.content %></p>
-                      <p><%= response.price %></p>
-                      <p><%= response.contact %></p>
-                    </div>
+                    <% @ticket.responses.each do |response| %>
+                      <%= link_to profile_path(response.user) do%>
+                        <div class="response-content">
+
+                          <div class="messagephoto">
+                            <% if @user.photo %>
+                              <%= cl_image_tag @user.photo, height: 100, width: 100, crop: :fill %>
+                            <% elsif @user.facebook_picture_url %>
+                              <img src=<%=@user.facebook_picture_url +"&height=100&width=100"%> alt="profile_pic">
+                            <% else %>
+                              <%= image_tag("favicon-01.png", height: '100', width: '100') %>
+                            <% end %>
+                          </div>
+                          <div class="responsetextarea">
+                            <h5><%= response.user.first_name %> on <%= response.created_at.strftime("%b %d, %Y") %></h5>
+                            <p>"<%= response.content %>"</p>
+                            <div class="contactmessage">
+                              <div><i class="fas fa-dollar-sign"></i><%= response.price %>
+                              </div>
+                              <div><i class="fas fa-phone"></i><%= response.contact %></p>
+                              </div>
+                            </div>
+                          </div>
+
+                        </div>
+                      <% end %>
                     <% end %>
-                  <% end %>
+
 
               <% end %>
 

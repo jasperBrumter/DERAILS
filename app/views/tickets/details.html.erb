@@ -12,71 +12,88 @@
             <div class="ticketdetailscard">
               <h2>Ticket Details</h2>
 
-              <p><%= @ticket.id %></p>
+              <p>TICKET #<%= @ticket.id %></p>
+              <p>Created <%= @ticket.created_at.strftime("%b %e, %l:%M %p") %></p>
+              <p><%= @ticket.address %></p>
+
+              <% if @ticket.tune_up or @ticket.brakes or @ticket.flat_tire or @ticket.chain or @ticket.gears or @ticket.wheels or @ticket.frame %>
+                <h3>Tags</h3>
+                <% if @ticket.tune_up == true %>
+                  <div class="filter">Tune Up</div>
+                <% end %>
+                <% if @ticket.brakes == true %>
+                  <div class="filter">Brakes</div>
+                <% end %>
+                <% if @ticket.flat_tire == true %>
+                  <div class="filter">Flat tire</div>
+                <% end %>
+                <% if @ticket.chain == true %>
+                  <div class="filter">Chain</div>
+                <% end %>
+                <% if @ticket.gears == true %>
+                  <div class="filter">Gears</div>
+                <% end %>
+                <% if @ticket.wheels == true %>
+                  <div class="filter">Wheels</div>
+                <% end %>
+                <% if @ticket.frame == true %>
+                  <div class="filter">Frame</div>
+                <% end %>
+              <% end %>
+
+              <% if @ticket.photo_1.file or @ticket.photo_2.file or @ticket.photo_3.file %>
+                <h3>Uploaded Photos</h3>
+              <% end %>
+
+              <% if @ticket.photo_1.file %>
+                <%= cl_image_tag @ticket.photo_1, height: 320, width: 320, crop: :fill %>
+              <% end %>
+              <% if @ticket.photo_2.file %>
+                <%= cl_image_tag @ticket.photo_2, height: 320, width: 320, crop: :fill %>
+              <% end %>
+              <% if @ticket.photo_3.file %>
+                <%= cl_image_tag @ticket.photo_3, height: 320, width: 320, crop: :fill %>
+              <% end %>
+
+              <div class="ticketdescription">
+                 <h3>Description</h3>
+                <p><%= @ticket.description %></p>
+              </div>
+
+              <% if policy(@ticket).edit? %>
+                <% if @ticket.status == "pending" %>
+                  <%= link_to edit_ticket_path(@ticket) do%>
+                    <div class="editbutton">EDIT</div>
+                  <% end %>
+                    <%= link_to "/tickets/#{@ticket.id}", method: "change_status" do%>
+                      <div class="markbutton">MARK AS COMPLETE</div>
+                    <% end %>
+                  <% end %>
+                  <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
+                    <div class="deletebutton">DELETE</div>
+                  <% end %>
+
+              <% elsif current_user.is_mechanic==true %>
+                  <div class="markbutton" id="showform">WANT TO FIX THIS BIKE?</div>
+                  <div class="hidden" id="fillForm">
+                    <%= simple_form_for ([@ticket, @response]) do |f| %>
+                      <%= f.input :content, input_html: {class: 'checkboxverify'}%>
+                      <%= f.input :price, input_html: {class: 'checkboxverify'} %>
+                      <%= f.input :contact, input_html: {class: 'checkboxverify'} %>
+                      <%= f.button :submit,  class: "answer-button hidden" %>
+                        <div class="next3">
+                          Answer
+                        </div>
+                    <% end %>
+
+                  </div>
 
 
-              <h3>Tags</h3>
-    <% if @ticket.tune_up == true %>
-      <div class="filter">Tune Up</div>
-    <% end %>
-    <% if @ticket.brakes == true %>
-      <div class="filter">Brakes</div>
-    <% end %>
-    <% if @ticket.flat_tire == true %>
-      <div class="filter">Flat tire</div>
-    <% end %>
-    <% if @ticket.chain == true %>
-      <div class="filter">Chain</div>
-    <% end %>
-    <% if @ticket.gears == true %>
-      <div class="filter">Gears</div>
-    <% end %>
-    <% if @ticket.wheels == true %>
-      <div class="filter">Wheels</div>
-    <% end %>
-    <% if @ticket.frame == true %>
-      <div class="filter">Frame</div>
-    <% end %>
+              <% end %>
 
-
-    <% if @ticket.photo_1.file %>
-      <%= cl_image_tag @ticket.photo_1 %>
-    <% end %>
-
-    <h3>Description</h3>
-    <p><%= @ticket.address %></p>
-    <p><%= @ticket.description %></p>
-
-    <% if policy(@ticket).edit? %>
-      <% if @ticket.status == "pending" %>
-        <%= link_to edit_ticket_path(@ticket) do%>
-          <div class="editbutton">EDIT</div>
-        <% end %>
-          <%= link_to "/tickets/#{@ticket.id}", method: "change_status" do%>
-            <div class="markbutton">MARK AS COMPLETE</div>
-          <% end %>
-        <% end %>
-        <%= link_to "/tickets/#{@ticket.id}", method: "delete" do%>
-          <div class="deletebutton">DELETE</div>
-        <% end %>
-
-    <% elsif current_user.is_mechanic==true %>
-
-        <%= simple_form_for ([@ticket, @response]) do |f| %>
-          <%= f.input :content %>
-          <%= f.input :price %>
-          <%= f.input :contact %>
-          <%= f.button :submit,  class: "answer-button hidden" %>
-            <div class="next3">
-              Answer
-            </div>
-        <% end %>
-
-    <% end %>
-
-      <div class="back1">
-        <%= link_to :back do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
-      </div>
+                <div class="back1">
+                  <%= link_to :back do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
+                </div>
             </div>
 
 
@@ -89,8 +106,29 @@
 
 
 <script>
-  document.querySelector(".next3").addEventListener("click", (e) => {
-    document.querySelector(".answer-button").click();
+  document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
+
+  document.querySelector("#showform").addEventListener("click", (event) => {
+    document.querySelector("#showform").classList.toggle("hidden");
+    document.querySelector("#fillForm").classList.toggle("hidden");
   })
+
+  const checkboxes = document.querySelectorAll(".checkboxverify")
+  document.querySelector(".next3").addEventListener("click", (e) => {
+    checkboxes.forEach((element) => {
+      element.addEventListener("focus", (e) => {
+        element.style.border="";
+      })
+      if (element.value.trim() == "") {
+        element.style.border="2px solid red";
+      }
+    })
+
+      if (checkboxes[0].value.trim() != "" && checkboxes[1].value.trim() != "" && checkboxes[2].value.trim() != "" ) {
+        document.querySelector(".answer-button").click()
+      }
+  })
+
+
 
 </script>
