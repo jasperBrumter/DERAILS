@@ -31,6 +31,7 @@ class TicketsController < ApplicationController
   def show
     @user = current_user
     @ticket = Ticket.find(params[:id])
+    @responses = @ticket.responses.where(user: current_user)
     authorize @ticket
   end
 

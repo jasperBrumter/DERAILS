@@ -1,4 +1,4 @@
-<% provide(:title, "Your Ticket") %>
+<% provide(:title, "Ticket") %>
 
 
 <div id="restofpage">
@@ -11,8 +11,10 @@
       <div class="row">
         <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
           <div class="ticket-show-card">
-            <h2>YOUR TICKET</h2>
+            <h2>TICKET</h2>
+            <% if @ticket.user.is_mechanic %>
             <h5>choose your mechanic</h5>
+            <% end %>
 
               <h3><%= "TICKET # #{@ticket.id}" %></h3>
               <p><%= @ticket.created_at.strftime("%F") %></p>
@@ -39,8 +41,14 @@
                   <p>There are no answers yet!</p>
               <% else %>
 
-                  <h2>YOUR MESSAGES</h2>
-                  <% @ticket.responses.each do |response| %>
+                  <h2>MESSAGES</h2>
+
+                  <% if current_user.is_mechanic %>
+                    <% @responses.each do |response| %>
+                    <p><%= response.content %></p>
+                    <% end %>
+                  <% elsif %>
+                    <% @ticket.responses.each do |response| %>
 
                     <div class="response-content">
                       <p><%= response.user.first_name %></p>
@@ -49,6 +57,7 @@
                       <p><%= response.price %></p>
                       <p><%= response.contact %></p>
                     </div>
+                    <% end %>
                   <% end %>
 
               <% end %>

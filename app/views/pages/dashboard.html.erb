@@ -34,9 +34,11 @@
             <% if @user.is_mechanic %>
               <h2>Tickets You Responded To</h2>
                 <% @user.responses.each do |response|%>
-                <div class="ticketList">
-                  <%= "TICKET # #{response.ticket_id}" %>
-                </div>
+                  <%= link_to ticket_path(response.ticket) do %>
+                    <div class="ticketList">
+                      <%= "TICKET # #{response.ticket_id}" %>
+                    </div>
+                  <% end %>
                 <% end %>
             <% end %>
 
