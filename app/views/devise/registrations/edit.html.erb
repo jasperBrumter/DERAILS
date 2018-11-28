@@ -1,35 +1,98 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
+<% provide(:title, "Sign Up") %>
 
-  <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
 
-    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-      <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
-    <% end %>
-
-    <%= f.input :password,
-                hint: "leave it blank if you don't want to change it",
-                required: false
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: false,
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :current_password,
-                hint: "we need your current password to confirm your changes",
-                required: true,
-                input_html: { autocomplete: "current-password" } %>
+<div id="restofpage">
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+  <div id="beige-bg">
   </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+        <div class="editprofile">
+          <h2 id="title_top">Edit Account</h2>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
+          <div class="forms-all">
+            <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= f.error_notification %>
+
+              <div class="form-inputs">
+                <%= f.input :email, required: true, autofocus: true %>
+
+                <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
+                <% end %>
+
+                <%= f.input :password,
+                            hint: "leave it blank if you don't want to change it",
+                            required: false,
+                            input_html: { autocomplete: "new-password" } %>
+                <%= f.input :password_confirmation,
+                            required: false,
+                            input_html: { autocomplete: "new-password" } %>
+                <%= f.input :current_password,
+                            hint: "we need your current password to confirm your changes",
+                            required: true,
+                            input_html: { autocomplete: "current-password" } %>
+              </div>
+
+              <fieldset class="form-group boolean optional user_is_mechanic">
+                <div class="form-check">
+                  <input name="user[is_mechanic]" type="hidden" value="0">
+                  <input class="form-check-input boolean optional hidden" autofocus="autofocus" type="checkbox" value="1" name="user[is_mechanic]" id="user_is_mechanic">
+                  <label class="form-check-label boolean optional" for="user_is_mechanic">Would you like to fix bikes?</label>
+                  <div class="yesno">
+                    <div class="yesnoopt">YES</div>
+                    <div class="yesnoopt">NO</div>
+                  </div>
+                </div>
+              </fieldset>
+
+              <div class="form-actions">
+                <%= f.button :submit, "Update Settings" %>
+              </div>
+            <% end %>
+
+            <h3>Cancel my account</h3>
+
+            <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+            <%= link_to "Back", :back %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-<% end %>
+</div>
 
-<h3>Cancel my account</h3>
+<script>
+  document.querySelectorAll(".navbar-derails")[1].style.background= "rgb(61,111,75)";
+  document.querySelectorAll(".navbar-derails")[1].style.borderBottom="1px solid rgb(141,205,160)";
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+  const mechbuttons = document.querySelectorAll(".yesnoopt");
+  mechbuttons[1].style.background = "rgb(242,233,217)";
+  mechbuttons[1].style.color = "rgb(61,111,75)";
 
-<%= link_to "Back", :back %>
+  mechbuttons[0].addEventListener("click", (e) => {
+    mechbuttons[0].style.background = "rgb(242,233,217)";
+    mechbuttons[0].style.color = "rgb(61,111,75)";
+    mechbuttons[1].style.background = "rgb(61,111,75)";
+    mechbuttons[1].style.color = "rgb(242,233,217)";
+    mechbuttons[1].style.border = "2px solid rgb(242,233,217)";
+    document.getElementById("user_is_mechanic").checked=true;
+  })
+  mechbuttons[1].addEventListener("click", (e) => {
+    mechbuttons[1].style.background = "rgb(242,233,217)";
+    mechbuttons[1].style.color = "rgb(61,111,75)";
+    mechbuttons[0].style.background = "rgb(61,111,75)";
+    mechbuttons[0].style.color = "rgb(242,233,217)";
+    mechbuttons[0].style.border = "2px solid rgb(242,233,217)";
+    document.getElementById("user_is_mechanic").checked=false;
+  })
+</script>
+
+
+
+
+
