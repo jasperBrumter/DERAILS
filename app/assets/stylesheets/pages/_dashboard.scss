@@ -51,12 +51,26 @@
 
   .ticketList {
     width: 300px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 70px;
     background-color: $lightgreen;
     color: $darkgreen;
     margin: 10px;
+    text-align: center;
+    padding: 10px 0;
+    h3 {
+      color: $darkgreen;
+      font-size: 22px;
+      margin: 0;
+    }
+    p {
+      font-size: 16px;
+      margin: 0;
+    }
   }
+}
+
+.responsescontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
