@@ -16,7 +16,7 @@
             <h3><%= @user.email %></h3>
             <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p>
 
-            <%= link_to "#" do %>
+            <%= link_to edit_user_registration_path do %>
                 <div class="editbutton">EDIT PROFILE</div>
             <% end %>
 
@@ -52,7 +52,7 @@
             <% end %>
 
             <div class="back1">
-                <%= link_to dashboard_path do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
+                <%= link_to :back do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
             </div>
           </div>
         </div>
