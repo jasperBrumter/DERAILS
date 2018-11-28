@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: flex-start;
   margin-top: 15vh;
+  width: 100%;
 
   h2 {
     font-family: "Roboto", sans-serif;
@@ -27,14 +28,36 @@
 
 .response-content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  flex-wrap:wrap;
   justify-content: space-between;
-  width: 80%;
+  width: 100%;
   border-width: 3px;
   border-style: solid;
   border-color: $lightgreen;
   margin-bottom: 10px;
+  padding: 15px;
+  color: $darkgreen;
+
+  .messagephoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 100px;
+  }
+  .contactmessage {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    padding-top: 10px;
+  }
+
+  .responsetextarea {
+    flex: 1 0 220px;
+    padding: 10px;
+  }
 }
 
 .info-button {
