@@ -29,7 +29,7 @@
               <% end %>
 
 
-                    <%= link_to details_path(@ticket) do %>
+              <%= link_to details_path(@ticket) do %>
                 <div type="button" class="info-button">
                   VIEW INFO
                 </div>
@@ -53,56 +53,47 @@
 
 
 
-
-
-
-              <% if @ticket.responses.length == 0 %>
-                  <p>There are no answers yet!</p>
-              <% else %>
-
-                  <h2>MESSAGES</h2>
-
-
-                    <% @ticket.responses.each do |response| %>
-                      <%= link_to profile_path(response.user) do%>
-                        <div class="response-content">
-
-                          <div class="messagephoto">
-                            <% if @user.photo %>
-                              <%= cl_image_tag @user.photo, height: 100, width: 100, crop: :fill %>
-                            <% elsif @user.facebook_picture_url %>
-                              <img src=<%=@user.facebook_picture_url +"&height=100&width=100"%> alt="profile_pic">
-                            <% else %>
-                              <%= image_tag("favicon-01.png", height: '100', width: '100') %>
-                            <% end %>
-                          </div>
-                          <div class="responsetextarea">
-                            <h5><%= response.user.first_name %> on <%= response.created_at.strftime("%b %d, %Y") %></h5>
-                            <p>"<%= response.content %>"</p>
-                            <div class="contactmessage">
-                              <div><i class="fas fa-dollar-sign"></i><%= response.price %>
-                              </div>
-                              <div><i class="fas fa-phone"></i><%= response.contact %></p>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
+            <h2>MESSAGES</h2>
+              <% @ticket.responses.each do |response| %>
+                <%= link_to profile_path(response.user) do%>
+                  <div class="response-content">
+                    <div class="messagephoto">
+                      <% if response.user.photo %>
+                        <%= cl_image_tag response.user.photo, height: 100, width: 100, crop: :fill %>
+                      <% elsif response.user.facebook_picture_url %>
+                        <img src=<%=response.user.facebook_picture_url +"&height=100&width=100"%> alt="profile_pic">
+                      <% else %>
+                        <%= image_tag("favicon-01.png", height: '100', width: '100') %>
                       <% end %>
-                    <% end %>
-
-
+                    </div>
+                    <div class="responsetextarea">
+                      <h5><%= response.user.first_name %> on <%= response.created_at.strftime("%b %d, %Y") %></h5>
+                      <p>"<%= response.content %>"</p>
+                      <div class="contactmessage">
+                        <div><i class="fas fa-dollar-sign"></i><%= response.price %>
+                        </div>
+                        <div><i class="fas fa-phone"></i><%= response.contact %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
               <% end %>
 
-              <div class="back1">
-                <%= link_to dashboard_path do%><i class="fas fa-long-arrow-alt-left"></i><strong>back</strong><% end %>
-              </div>
 
+              <div class="back1">
+                <%= link_to dashboard_path do%>
+                  <i class="fas fa-long-arrow-alt-left"></i>
+                  <strong>back</strong>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
     </div>
   </div>
-
-
 </div>
+
+<script>
+    document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
+</script>

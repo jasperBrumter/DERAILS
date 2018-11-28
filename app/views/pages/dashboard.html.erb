@@ -13,7 +13,6 @@
 
 
             <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-            <h3><%= @user.email %></h3>
             <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p>
 
             <% if @user.is_mechanic %>
@@ -34,17 +33,40 @@
                 <div class="editbutton">EDIT PROFILE</div>
             <% end %>
 
+
             <% if @user.is_mechanic && @user.responses.count != 0 %>
-              <h2>Tickets You Responded To</h2>
-                <% @user.responses.each do |response|%>
-                  <%= link_to ticket_path(response.ticket) do %>
-                    <div class="ticketList">
-                      <%= "TICKET # #{response.ticket_id}" %>
-                    </div>
+              <div class="responsescontainer">
+                <h2>Tickets You Responded To</h2>
+                  <% myarray = [] %>
+                  <% sortedResponses = @user.responses.sort_by {|obj| obj.created_at}.reverse %>
+                  <% sortedResponses.each_with_index do |response, responseindex|%>
+                    <% unless myarray.include? response.ticket_id %>
+                      <% myarray.push(response.ticket_id)%>
+                      <% if myarray.length <= 5 %>
+                        <%= link_to ticket_path(response.ticket) do %>
+                          <div class="ticketList">
+                            <h3><%= "TICKET # #{response.ticket_id}" %></h3>
+                            <p><%= "on: #{response.created_at.strftime('%b %e, %l:%M %p')}" %></p>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <%= link_to ticket_path(response.ticket) do %>
+                          <div class="ticketList hidden">
+                            <h3><%= "TICKET # #{response.ticket_id}" %></h3>
+                            <p><%= "on: #{response.created_at.strftime('%b %e, %l:%M %p')}" %></p>
+                          </div>
+                        <% end %>
+                      <% end %>
+                    <% end %>
                   <% end %>
-                <% end %>
+                  <% if myarray.length > 5 %>
+                    <div class="editbutton" id="viewmoreresponses">View more</div>
+                  <% end %>
+              </div>
             <% end %>
             <hr>
+
+
             <% if @user.tickets.count != 0 %>
               <h2>Your Tickets</h2>
               <% @user.tickets.each do |ticket| %>
@@ -68,4 +90,14 @@
 
 
 
+<script>
+  document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
 
+  document.querySelector("#viewmoreresponses").addEventListener("click", (e) => {
+    document.querySelector(".responsescontainer").querySelectorAll(".hidden").forEach((element) => {
+      element.classList.remove("hidden");
+      document.querySelector("#viewmoreresponses").classList.add("hidden");
+    })
+  })
+
+</script>
