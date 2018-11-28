@@ -1,7 +1,7 @@
 
 
 .ticketcard {
-  background: $lightgreen;
+  background: $darkgreen;
   width: 100%;
   height: 200px;
   margin-top: 10px;
@@ -9,7 +9,7 @@
   align-items: center;
   justify-content:center;
   flex-direction: column;
-  color: $darkgreen;
+  color: $beige;
   a {
     color: $beige;
   }
@@ -25,8 +25,8 @@
     display: inline-block;
     height: 30px;
     width: 80px;
-    background-color: $darkgreen;
-    color: $lightgreen;
+    background-color: $lightgreen;
+    color: $darkgreen;
     display: flex;
     align-items: center;
     justify-content:center;
