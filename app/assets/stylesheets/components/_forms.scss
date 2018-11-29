@@ -86,7 +86,17 @@
   width: 320px;
   height: 320px;
   margin: 20px auto;
-  background-color: $darkgreen;
+  .examplepic {
+    border: 1px solid $darkgreen;
+    border-radius: 4px;
+    padding: 5px;
+    display: block;
+    max-width:320px;
+    max-height:320px;
+    width: auto;
+    height: auto;
+
+  }
 }
 
 .clickedbox {
@@ -106,6 +116,9 @@
   }
   &:hover {
     color: $lightgreen;
+  }
+  a {
+    color: $darkgreen;
   }
 }
 
