@@ -23,20 +23,24 @@
 
             <% if @user.is_mechanic %>
               <%= link_to tickets_path do %>
-                <div class="markbutton">FIND NEW BIKE TO FIX</div>
+                <div class="editbutton">FIND NEW BIKE TO FIX</div>
+              <% end %>
+              <%= link_to new_ticket_path do %>
+                <div class="markbutton">CREATE NEW TICKET</div>
               <% end %>
             <% else %>
               <%= link_to edit_user_registration_path do %>
                 <div class="markbutton">BECOME A MECHANIC</div>
               <% end %>
+              <%= link_to new_ticket_path do %>
+                <div class="editbutton">CREATE NEW TICKET</div>
+              <% end %>
             <% end %>
 
-            <%= link_to new_ticket_path do %>
-              <div class="markbutton">CREATE NEW TICKET</div>
-            <% end %>
+
 
             <%= link_to edit_user_registration_path do %>
-                <div class="editbutton">EDIT PROFILE</div>
+                <div class="markbutton">EDIT PROFILE</div>
             <% end %>
 
 

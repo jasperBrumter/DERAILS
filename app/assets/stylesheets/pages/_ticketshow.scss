@@ -61,14 +61,20 @@
 }
 
 .info-button {
-  width: 350px;
-  height: 70px;
+  width: 320px;
+  height: 60px;
   background-color: $darkgreen;
   text-align: center;
   padding: 25px;
   margin: 10px;
   color: $beige;
   text-decoration: none;
+  border: 3px solid $lightgreen;
+  border-radius: 30px 0 30px 0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 3px;
   &:hover {
     color: $lightgreen;
   }
@@ -77,12 +83,13 @@
 
 
 .status-pending {
-  width: 300px;
+  width: 200px;
   height: 40px;
   background-color: $red;
   text-align: center;
   padding: 5px;
   margin: 10px;
+  border-radius: 20px;
   color: $beige;
   .status:hover{
     color: white;
@@ -90,13 +97,14 @@
 }
 
 .status-completed {
-  width: 300px;
+  width: 200px;
   height: 40px;
   background-color: $lightgreen;
   text-align: center;
   padding: 5px;
   margin: 10px;
   color: $beige;
+  border-radius: 20px;
   .status:hover{
     color: white;
   }
