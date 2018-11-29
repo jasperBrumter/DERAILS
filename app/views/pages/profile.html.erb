@@ -11,7 +11,7 @@
           <div class="dash-container">
             <h1><%= @user.first_name %> <%= @user.last_name %></h1>
             <% if  @user.average_rating%>
-              <p><%= @user.average_rating.round(1) %></p>
+              <p> RATING <%= @user.average_rating.round(1) %></p>
             <% end %>
 
             <% if @user.photo %>
@@ -21,6 +21,7 @@
             <% end %>
 
             <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p> <hr>
+            <h1>REVIEWS</h1>
             <% @user.reviews.each do |review| %>
             <div class="ratingline">
               <% review.rating.times do %>
@@ -30,14 +31,21 @@
                 <i class="far fa-star"></i>
               <% end %>
             </div>
-
-              <p><%= review.content %></p>
+            <p>"<%= review.content %>"</p>
             <% end %>
 
+            <% if current_user != @user %>
+            <div class="markbutton" id="showform">ADD REVIEW</div>
+            <div class="hidden" id="fillForm">
             <%= simple_form_for [@user, @review], url: :create_review do |f| %>
-              <%= f.input :rating  %>
-              <%= f.input :content %>
-              <%= f.submit "add a review" %>
+
+              <%= f.hint 'From 1 to 5' %>
+              <%= f.input :rating, input_html: {class: 'checkboxverify'}%>
+              <%= f.input :content, input_html: {class: 'checkboxverify'}%>
+              <%= f.button :submit,  class: "answer-button hidden" %>
+                <div class="next3">ADD REVIEW</div>
+            </div>
+            <% end %>
             <% end %>
 
 
@@ -47,3 +55,35 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.querySelectorAll(".navbar-derails")[1].style.backgroundColor = "rgb(242,233,217)";
+
+  document.querySelector("#showform").addEventListener("click", (event) => {
+    document.querySelector("#showform").classList.toggle("hidden");
+    document.querySelector("#fillForm").classList.toggle("hidden");
+  })
+
+  const checkboxes = document.querySelectorAll(".checkboxverify")
+  document.querySelector(".next3").addEventListener("click", (e) => {
+    checkboxes.forEach((element) => {
+      element.addEventListener("focus", (e) => {
+        element.style.border="";
+      })
+    })
+
+
+      if (parseInt(checkboxes[0].value) < 0 || parseInt(checkboxes[0].value) > 5) {
+        checkboxes[0].style.border="2px solid red";
+      }
+
+      if (checkboxes[1].value.trim() == "") {
+        checkboxes[1].style.border="2px solid red";
+      }
+
+      if (parseInt(checkboxes[0].value) >= 0 && parseInt(checkboxes[0].value) <= 5 && checkboxes[1].value.trim() != "" ){
+        document.querySelector(".answer-button").click()
+      }
+  })
+
+</script>

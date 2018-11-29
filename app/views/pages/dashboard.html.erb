@@ -15,6 +15,12 @@
             <h1><%= @user.first_name %> <%= @user.last_name %></h1>
             <p>Member since <%= @user.created_at.strftime("%B %Y") %> </p>
 
+            <% if @user.photo %>
+              <%= cl_image_tag @user.photo, height: 250, width: 250, crop: :fill %>
+            <% elsif @user.facebook_picture_url %>
+              <img src=<%=@user.facebook_picture_url +"&height=320&width=320"%> alt="profile_pic">
+            <% end %>
+
             <% if @user.is_mechanic %>
               <%= link_to tickets_path do %>
                 <div class="markbutton">FIND NEW BIKE TO FIX</div>
@@ -36,7 +42,7 @@
 
             <% if @user.is_mechanic && @user.responses.count != 0 %>
               <div class="responsescontainer">
-                <h2>Tickets You Responded To</h2>
+                <h2>YOUR RESPONSES</h2>
                   <% myarray = [] %>
                   <% sortedResponses = @user.responses.sort_by {|obj| obj.created_at}.reverse %>
                   <% sortedResponses.each_with_index do |response, responseindex|%>
@@ -68,11 +74,13 @@
 
 
             <% if @user.tickets.count != 0 %>
-              <h2>Your Tickets</h2>
+              <h2>YOUR TICKETS</h2>
               <% @user.tickets.each do |ticket| %>
                 <%= link_to ticket_path(ticket) do %>
                   <div class="ticketList">
                     <%= "TICKET # #{ticket.id}" %>
+                    <br>
+                    <%= ticket.created_at.strftime("%b %e, %l:%M %p") %>
                   </div>
                 <% end %>
               <% end %>
