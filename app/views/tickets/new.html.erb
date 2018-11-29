@@ -75,7 +75,7 @@
             <div class="col-xs-12">
               <center>
                 <h1>Picture time !</h1>
-                <p>We recommend uploading an overview</p>
+                <h2 class="pictureupload">OVERVIEW</h2>
               </center>
             </div>
             <div class="col-xs-12">
@@ -84,7 +84,17 @@
               </div>
             </div>
             <div class="col-xs-12">
-              <center><p>As well as a close-up of the specific problem </p></center>
+              <div class="photouploadbutton">
+                UPLOAD
+              </div>
+              <center class="hidden">
+                <%= f.input :photo_1 %>
+                <%= f.input :photo_1_cache, as: :hidden %>
+              </center>
+            </div>
+
+            <div class="col-xs-12">
+              <center><h2 class="pictureupload">CLOSE-UP</h2></center>
             </div>
             <div class="col-xs-12">
               <div class="pictureexample">
@@ -92,7 +102,16 @@
               </div>
             </div>
             <div class="col-xs-12">
-              <center><p>And a last one </p></center>
+              <div class="photouploadbutton">
+                UPLOAD
+              </div>
+              <center class="hidden">
+                <%= f.input :photo_2 %>
+                <%= f.input :photo_2_cache, as: :hidden %>
+              </center>
+            </div>
+            <div class="col-xs-12">
+              <center><h2 class="pictureupload">CLOSE-UP</h2></center>
             </div>
             <div class="col-xs-12">
               <div class="pictureexample">
@@ -100,23 +119,11 @@
               </div>
             </div>
 
-
-            <div class="col-xs-12 photoselect">
-              <center>
-                <%= f.input :photo_1 %>
-                <%= f.input :photo_1_cache, as: :hidden %>
-
-              </center>
-            </div>
-            <div class="col-xs-12 photoselect">
-              <center>
-                <%= f.input :photo_2 %>
-                <%= f.input :photo_2_cache, as: :hidden %>
-
-              </center>
-            </div>
-            <div class="col-xs-12 photoselect">
-              <center>
+            <div class="col-xs-12">
+              <div class="photouploadbutton">
+                UPLOAD
+              </div>
+              <center class="hidden">
                 <%= f.input :photo_3 %>
                 <%= f.input :photo_3_cache, as: :hidden %>
 
@@ -280,12 +287,30 @@
 
 
   <% if @ticket.errors[:longitude] != [] %>
-
     firstPartForm.classList.toggle("hidden");
     thirdPartForm.classList.toggle("hidden");
     addressField.style.border="2px solid red";
     addressField.value = ""
     addressField.placeholder = "Oops. We couldn't find that on our map..."
-
   <% end %>
+
+  const uploadbuttons =  document.querySelectorAll(".photouploadbutton");
+  let i = 0;
+  for (i; i<uploadbuttons.length; i++) {
+    let index = i+1;
+    uploadbuttons[i].addEventListener("click", (event) => {
+      document.querySelector(`#ticket_photo_${index}`).click()
+    })
+    document.querySelector(`#ticket_photo_${index}`).addEventListener("change", (event) => {
+      if (document.querySelector(`#ticket_photo_${index}`).value == "") {
+        uploadbuttons[index-1].innerText = "UPLOAD";
+      }
+      else {
+        uploadbuttons[index-1].innerText = "PICTURE UPLOADED";
+      }
+    })
+  }
+
+
+
 </script>

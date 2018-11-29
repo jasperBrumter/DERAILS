@@ -47,9 +47,7 @@
 .step1, .step2, .step3 {
   margin-top: 120px;
 }
-.photoselect {
-  margin-top: 30px;
-}
+
 
 .next1, .next2, .next3 {
   margin-top: 30px;
@@ -83,21 +81,25 @@
 
 }
 .pictureexample {
-  width: 320px;
-  height: 320px;
   margin: 20px auto;
   .examplepic {
     border: 1px solid $darkgreen;
     border-radius: 4px;
     padding: 5px;
     display: block;
-    max-width:320px;
-    max-height:320px;
+    max-width:250px;
+    max-height:250px;
     width: auto;
     height: auto;
-
+    margin: 0 auto;
   }
 }
+.pictureupload {
+  color: $darkgreen;
+  font-size: 30px;
+  letter-spacing: 2px;
+}
+
 
 .clickedbox {
   background-color: $darkgreen;
@@ -119,6 +121,25 @@
   }
   a {
     color: $darkgreen;
+  }
+}
+
+.photouploadbutton {
+  margin: 20px auto;
+  width: 300px;
+  height: 60px;
+  background-color: $darkgreen;
+  color: $lightgreen;
+  border: 2px solid $lightgreen;
+  border-radius: 40px 0 40px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s ease;
+  &:hover {
+    background-color: $lightgreen;
+    color: $darkgreen;
+    border: 2px solid $darkgreen;
   }
 }
 
