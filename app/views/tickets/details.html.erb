@@ -10,14 +10,13 @@
         <div class="row">
           <div class="col-xs-12 col-xs-offset-0 col-md-8 col-md-offset-2">
             <div class="ticketdetailscard">
-              <h2>Ticket Details</h2>
-
-              <p>TICKET #<%= @ticket.id %></p>
+              <h2>TICKET #<%= @ticket.id %></h2>
+              <br>
               <p>Created <%= @ticket.created_at.strftime("%b %e, %l:%M %p") %></p>
               <p><%= @ticket.address %></p>
 
               <% if @ticket.tune_up or @ticket.brakes or @ticket.flat_tire or @ticket.chain or @ticket.gears or @ticket.wheels or @ticket.frame %>
-                <h3>Tags</h3>
+                <h3>SELECTED ISSUES</h3>
                 <% if @ticket.tune_up == true %>
                   <div class="filter">Tune Up</div>
                 <% end %>
@@ -42,7 +41,7 @@
               <% end %>
 
               <% if @ticket.photo_1.file or @ticket.photo_2.file or @ticket.photo_3.file %>
-                <h3>Uploaded Photos</h3>
+                <h3>PICTURES</h3>
               <% end %>
 
               <% if @ticket.photo_1.file %>
@@ -54,9 +53,10 @@
               <% if @ticket.photo_3.file %>
                 <%= cl_image_tag @ticket.photo_3, height: 320, width: 320, crop: :fill %>
               <% end %>
-
+              <br>
+              <br>
+              <h3>DESCRIPTION</h3>
               <div class="ticketdescription">
-                 <h3>Description</h3>
                 <p><%= @ticket.description %></p>
               </div>
 
