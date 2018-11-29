@@ -12,7 +12,7 @@ class ReviewsController < ApplicationController
         review_count = @review.user.reviews.count
         total = review_count * @review.user.average_rating
         total += @review.rating
-        average_rating = total / (review_count + 1)
+        average_rating = total / (review_count)
         @review.user.update_attribute(:average_rating, average_rating)
 
       end
