@@ -66,9 +66,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  -ms-transform: rotate(-20deg); /* IE 9 */
-    -webkit-transform: rotate(-20deg); /* Safari */
-    transform: rotate(-20deg);
+
   transition: .25s ease;
   text-decoration: none;
   &:hover {
